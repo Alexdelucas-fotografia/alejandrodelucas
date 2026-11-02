@@ -1,0 +1,776 @@
+/* =========================================================
+   1. COLORES, LETRAS Y MÁRGENES
+   Cambia estos valores y cambia toda la web a la vez.
+   ========================================================= */
+:root {
+  /* Paleta de marca */
+  --verde-retiro: #4B5F4A;
+  --verde-oliva: #8A9A7A;
+  --tierra-madrid: #C9A96A;
+  --terracota: #A0563F;
+  --burdeos-suave: #6D2F2F;
+  --azul-cielo: #8FA7B8;
+  --blanco-calido: #F7F7F5;
+  --gris-suave: #D3D3CB;
+  --gris-medio: #8A8A8A;
+  --negro-mate: #1F1F1F;
+
+  /* Cómo se usa la paleta en la web */
+  --fondo: var(--blanco-calido);
+  --texto: #252525;                    /* nombre, títulos y menú */
+  --texto-suave: #555550;              /* textos de introducción */
+  --primario: var(--verde-retiro);
+  --fondo-boton: var(--gris-suave);    /* fondo de los botones (con línea y texto negros) */
+  --categoria: var(--verde-retiro);    /* localización y categoría */
+
+  --letra-titulos: "Libre Baskerville", serif;
+  --letra-texto: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --margen: clamp(1.25rem, 5vw, 4rem);     /* margen lateral */
+  --espacio: clamp(4.5rem, 10vw, 8rem);    /* espacio entre secciones */
+  --ancho-maximo: 78rem;                   /* ancho máximo del contenido */
+}
+
+/* =========================================================
+   2. AJUSTES GENERALES
+   ========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;   /* al pulsar un enlace del menú, baja suavemente */
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--letra-texto);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primario);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  text-align: center;
+  font-family: var(--letra-titulos);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+h1 {
+  max-width: 13ch;
+  margin-inline: auto;   /* centrado */
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin-bottom: 2.5rem;
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+/* Todas las secciones tienen el mismo espacio arriba, abajo y a los lados */
+.seccion {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: var(--espacio) var(--margen);
+  scroll-margin-top: 4rem;   /* para que la cabecera fija no tape el título */
+}
+
+.boton {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border: 2px solid var(--texto);
+  border-radius: 2rem;
+  background: var(--fondo-boton);
+  color: var(--texto);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.boton:hover {
+  background: var(--texto);
+  color: var(--fondo-boton);
+}
+
+/* =========================================================
+   3. BOTONES DE «OTROS TRABAJOS»
+   ========================================================= */
+
+.otras-sesiones {
+  text-align: center;
+  padding-top: 0;
+}
+
+.otras-sesiones p {
+  margin: 0 0 1rem;
+  color: var(--texto-suave);
+}
+
+.otras-sesiones ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.otras-sesiones a {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid var(--texto);
+  border-radius: 2rem;
+  background: var(--fondo-boton);
+  color: var(--texto);
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.otras-sesiones a:hover {
+  background: var(--texto);
+  color: var(--fondo-boton);
+}
+
+/* =========================================================
+   4. MOVIMIENTO REDUCIDO
+   ========================================================= */
+
+/* Si la persona ha pedido menos animaciones en su ordenador, las quitamos */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =========================================================
+   5. MARCO DE LAS PÁGINAS DE DENTRO Y TARJETAS DE LA PORTADA
+   ========================================================= */
+.marco {
+  --lado: clamp(3.5rem, 9vw, 7.5rem);   /* ancho de la columna lateral (y alto de la cabecera: la esquina es un cuadrado) */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--fondo);
+}
+
+/* El contenido de cada página deja un margen a los lados */
+.marco main {
+  flex: 1;
+  padding-inline: var(--lado);
+}
+
+.marco-cabecera {
+  position: relative;   /* para colocar el menú de hamburguesa en la esquina */
+  padding: clamp(1rem, 2.5vw, 1.75rem) var(--margen);
+  text-align: center;
+}
+
+/* Título centrado dentro de la tarjeta (sin marco) */
+
+.marco-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  padding: clamp(1rem, 2.5vw, 1.75rem) calc(var(--lado) + var(--margen));
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.6rem);
+}
+
+.marco-contacto a {
+  text-decoration: none;
+}
+
+.marco-contacto a:hover {
+  color: var(--categoria);
+}
+
+@media (max-width: 45rem) {
+  
+
+  
+
+  .marco-contacto {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* =========================================================
+   6. PRESENTACIÓN (texto a la izquierda y foto a la derecha)
+   ========================================================= */
+.sobre {
+  --fondo-verde: color-mix(in srgb, var(--verde-oliva) 30%, var(--fondo));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-inline: calc(var(--lado) * -1);   /* ocupa todo el ancho de la pantalla */
+}
+
+.sobre-texto {
+  padding:
+    clamp(2.5rem, 6vw, 5.5rem)
+    clamp(1.5rem, 4vw, 3.5rem)
+    clamp(2.5rem, 6vw, 4.5rem)
+    calc(var(--lado) + var(--margen));
+  /* fondo verdoso */
+  background: var(--fondo-verde);
+}
+
+.sobre-texto h2 {
+  margin-bottom: 1.25rem;
+  text-align: left;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.sobre-subtitulo {
+  margin: 0 0 2.25rem;
+  font-family: var(--letra-titulos);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+.sobre-parrafo {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+/* Fila desplegable: "Mi manera de trabajar" */
+.acordeon {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(37, 37, 37, 0.45);
+  border-bottom: 1px solid rgba(37, 37, 37, 0.45);
+}
+
+.acordeon summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0.5rem;
+  font-family: var(--letra-titulos);
+  font-size: 1.15rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.acordeon summary::-webkit-details-marker {
+  display: none;
+}
+
+.acordeon summary::after {
+  content: "+";
+  font-family: var(--letra-texto);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.acordeon[open] summary::after {
+  content: "−";
+}
+
+.acordeon summary:focus-visible {
+  outline: 2px solid var(--primario);
+  outline-offset: 2px;
+}
+
+.acordeon p {
+  margin: 0;
+  padding: 0 0.5rem 1.25rem;
+  color: var(--texto-suave);
+}
+
+.sobre-foto {
+  position: relative;
+  min-height: 26rem;
+}
+
+.sobre-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 45rem) {
+  .sobre {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-texto {
+    padding-right: var(--margen);
+  }
+
+  .sobre-foto {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* =========================================================
+   7. CABECERA DE LAS PÁGINAS DE DENTRO
+   (firma a la izquierda, apartado en el centro, menú a la derecha)
+   ========================================================= */
+.cabecera-interna {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  height: var(--lado);   /* igual que el ancho de la columna: la esquina de la firma es un cuadrado */
+  padding-block: 0;
+  padding-inline: calc(var(--lado) + 1rem);
+}
+
+/* La firma va dentro del cuadrado de la izquierda: la columna entre el borde
+   de la pantalla y la línea vertical del marco. Su tamaño depende de esa columna. */
+.firma {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--lado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.firma img {
+  width: auto;
+  height: calc(var(--lado) * 0.8);
+  max-width: 80%;
+  object-fit: contain;
+}
+
+/* El apartado donde estamos, en el centro */
+.cabecera-seccion {
+  grid-column: 2;
+  margin: 0;
+  font-family: var(--letra-titulos);
+  font-size: clamp(1.1rem, 2.4vw, 1.75rem);
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 45rem) {
+  .cabecera-interna {
+    gap: 0.5rem;
+  }
+
+  .cabecera-seccion {
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* =========================================================
+   8. PORTADA ESTILO ZARA: FIRMA Y PANTALLAS DE FOTOS
+   Pantallas de fotos que van subiendo al bajar, y la firma
+   grande fija abajo a la derecha.
+   ========================================================= */
+html:has(.zara) {
+  scroll-snap-type: y proximity;   /* las pantallas se "pegan" suavemente al bajar */
+}
+
+.pantalla {
+  position: relative;
+  display: block;
+  height: 100vh;
+  height: 100svh;
+  min-height: 26rem;
+  overflow: hidden;
+  background: var(--texto);
+  scroll-snap-align: start;
+}
+
+.pantalla img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Firma grande, fija abajo a la derecha. Es blanca y va sin sombra;
+   al llegar a una zona clara se pone oscura sola. */
+.firma-grande {
+  position: sticky;          /* acompaña mientras se ven las fotos y se queda en la última */
+  bottom: 0;
+  z-index: 5;
+  margin: calc(var(--alto) * -1) clamp(1rem, 3vw, 2.5rem) 0 auto;   /* se superpone a la última foto y no añade altura ni deja hueco debajo */
+  transform: translateY(calc(clamp(1rem, 3vw, 2rem) * -1));        /* la separa del borde de abajo sin ocupar sitio */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: calc(var(--alto) * 0.76);     /* ancho de la firma (su proporción es 638 x 839) */
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.firma-grande img {
+  display: block;
+  width: 100%;
+  height: var(--alto);
+}
+
+/* =========================================================
+   9. PORTADA: BLOQUE DE 4 FOTOS Y ZONA CLARA DE ABAJO
+   ========================================================= */
+/* Pantalla con cuatro fotos (2 x 2) */
+.pantalla-cuatro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));   /* cada foto ocupa la mitad de la pantalla */
+}
+
+/* Zona clara de abajo: tarjetas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
+.zara-claro {
+  background: var(--fondo);
+  scroll-snap-align: start;
+}
+
+.firma-grande.firma-oscura {
+  color: var(--texto);
+}
+
+.firma-grande.firma-oscura img {
+  filter: invert(1);
+}
+
+/* =========================================================
+   10. PORTADA: FOTO SOLA CON MARGEN Y DOS CUADRADOS ABAJO
+   ========================================================= */
+/* Pantalla con dos fotos, una al lado de la otra */
+.pantalla-dos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* Una sola foto, centrada y con margen blanco alrededor */
+.foto-sola {
+  display: grid;
+  place-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);   /* la foto se ajusta al alto de la pantalla */
+  height: 100vh;
+  height: 100svh;
+  min-height: 26rem;
+  padding: clamp(1.5rem, 5vw, 4rem) var(--margen);
+  background: var(--fondo);
+  scroll-snap-align: start;
+}
+
+.foto-sola img {
+  display: block;
+  width: min(100%, 52rem);
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/* Abajo: solo dos cuadrados, con el mismo estilo de marco y título */
+
+/* La firma de la portada aparece con un fundido suave al abrir la página */
+.firma-grande img {
+  animation: aparecer-firma 1.2s ease 1.2s both;   /* espera a que termine la intro */
+}
+
+@keyframes aparecer-firma {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 45rem) {
+  .pantalla-dos {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .firma-grande img {
+    animation: none;
+  }
+}
+
+/* Foto alargada: de lado a lado, sin marcos, más baja que una pantalla */
+.pantalla-ancha {
+  height: 55vh;
+  height: 55svh;
+  min-height: 16rem;
+}
+
+/* Texto que no se ve pero sí lo leen buscadores y lectores de pantalla (el título de la página) */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   11. APARTADOS DENTRO DE UNA PÁGINA: título y bloques de fotos
+   ========================================================= */
+/* Pantalla con tres fotos, una al lado de la otra */
+.pantalla-tres {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* Cada apartado ocupa todo el ancho de la pantalla */
+.apartado {
+  margin-inline: calc(var(--lado) * -1);
+  scroll-margin-top: 1rem;
+}
+
+.apartado-titulo {
+  margin: 0;
+  padding: clamp(4rem, 9vw, 7rem) var(--margen) clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+@media (max-width: 45rem) {
+  .pantalla-tres {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Botones al final de la página */
+.acciones-final {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.acciones-final .boton {
+  padding: 1rem 2.5rem;
+}
+
+/* Texto de "en qué consiste" y precios, en una columna centrada y fácil de leer */
+.seccion.detalle-servicio {
+  max-width: 48rem;
+  padding-bottom: 0;
+}
+
+.detalle-servicio p {
+  margin: 0 0 1.25rem;
+  color: var(--texto-suave);
+}
+
+.precios {
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--letra-titulos);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.precios li::before {
+  content: "· ";
+  color: var(--categoria);
+}
+
+.detalle-servicio .nota {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* Medidas de la portada. El pie es el mismo que el de las páginas de dentro (.marco-contacto). */
+.zara {
+  --lado: clamp(3.5rem, 9vw, 7.5rem);                 /* igual que en las páginas de dentro */
+  --alto: clamp(8rem, min(28vw, 50vh), 24rem);        /* alto de la firma: nunca más del 50 % del alto de la ventana */
+}
+
+/* Varios párrafos seguidos en la presentación */
+.sobre-parrafo + .sobre-parrafo {
+  margin-top: 1rem;
+}
+
+/* =========================================================
+   12. TÍTULOS QUE APARECEN AL BAJAR (lo activa script.js)
+   ========================================================= */
+.revelar {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* =========================================================
+   13. INTRO DE LA PORTADA: tu nombre en grande, encima de las fotos
+   Aparece, se queda un momento y se desvanece; entonces aparece la firma.
+   Dura 1,2 segundos y se repite cada vez que se abre la página.
+   ========================================================= */
+html.con-intro {
+  overflow: hidden;   /* mientras dura la intro no se puede hacer scroll */
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--margen);
+  pointer-events: none;
+  /* un velo oscuro suave sobre las fotos, para que se lea el nombre blanco */
+  background: rgba(20, 20, 20, 0.32);
+  animation: intro-velo 1.2s ease forwards;
+}
+
+.intro-nombre {
+  margin: 0;
+  font-family: var(--letra-titulos);
+  font-size: clamp(2.5rem, 9vw, 8rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/* el velo y el nombre aparecen, se quedan y se desvanecen juntos */
+@keyframes intro-velo {
+  0% { opacity: 0; visibility: visible; }
+  20%, 60% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Si se pulsa para saltarla: fuera la intro y la firma aparece enseguida */
+.intro-saltada .intro {
+  display: none;
+}
+
+.intro-saltada .firma-grande img {
+  animation-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.con-intro {
+    overflow: auto;   /* sin intro no hace falta bloquear el scroll */
+  }
+
+  .intro {
+    display: none;   /* sin movimiento: no hay intro */
+  }
+}
+
+/* =========================================================
+   14. FOTOS CON ENLACE AL INSTAGRAM
+   Cada foto va dentro de un <a class="foto-enlace">; estas reglas hacen que el enlace
+   ocupe el mismo sitio que ocupaba la foto, para que el diseño no cambie.
+   ========================================================= */
+.foto-enlace {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+}
+
+.pantalla > .foto-enlace {
+  overflow: hidden;
+}
+
+/* la foto de una sola, con su marco blanco alrededor */
+.foto-sola > .foto-enlace {
+  width: min(100%, 52rem);
+  height: 100%;
+}
+
+/* la foto de la presentación llena su mitad de la pantalla */
+.sobre-foto > .foto-enlace {
+  position: absolute;
+  inset: 0;
+}
+
+/* =========================================================
+   15. BLOQUE DIVIDIDO DE LA PORTADA: Familia | Fotos analógicas
+   Dos mitades a todo el ancho; cada una es un enlace con el nombre en letra grande.
+   ========================================================= */
+.bloque-dividido {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: clamp(14rem, 45vh, 26rem);
+}
+
+.bloque-mitad {
+  display: grid;
+  place-items: center;
+  padding: var(--margen);
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--letra-titulos);
+  font-size: clamp(1.6rem, 4.5vw, 4rem);
+  line-height: 1.05;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* la única línea: la que separa las dos mitades */
+.bloque-mitad + .bloque-mitad {
+  border-left: 1px solid var(--texto);
+}
+
+.bloque-mitad:hover {
+  background: var(--texto);
+  color: var(--fondo);
+}
+
+@media (max-width: 45rem) {
+  .bloque-dividido {
+    grid-template-columns: 1fr;
+  }
+
+  .bloque-mitad + .bloque-mitad {
+    border-left: 0;
+    border-top: 1px solid var(--texto);
+  }
+}

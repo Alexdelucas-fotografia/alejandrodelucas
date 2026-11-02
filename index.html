@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Lo que sale en la pestaña del navegador y en Google -->
+  <title>Alejandro de Lucas · Fotografía</title>
+  <meta name="description" content="Fotografía de familia y fotos analógicas de Alejandro de Lucas.">
+
+  <!-- Tipo de letra de los títulos (Google Fonts). El texto usa Helvetica -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilos.css">
+
+  <!-- Mientras dura la intro no se puede hacer scroll (se libera sola a los 1,3 segundos) -->
+  <script>
+    document.documentElement.classList.add("con-intro");
+    setTimeout(function () { document.documentElement.classList.remove("con-intro"); }, 1300);
+  </script>
+</head>
+<body class="zara">
+
+  <!-- ===== INTRO: al abrir la página sale tu nombre en grande y luego sube como una cortina.
+         Se repite cada vez. Un clic la salta. ===== -->
+  <div class="intro" aria-hidden="true">
+    <p class="intro-nombre">Alejandro de Lucas</p>
+  </div>
+
+  <!-- Título de la página para buscadores y lectores de pantalla (no se ve) -->
+  <h1 class="solo-lectores">Alejandro de Lucas, fotografía</h1>
+
+  <!-- ===== FOTOS DE FONDO, como en zara.es: 2 fotos, una alargada sin margen,
+         una sola foto con marco blanco y, al final, un bloque de 4.
+         CAMBIA los nombres de archivo y la descripción (alt) de cada foto ===== -->
+  <main>
+
+    <!-- 2 fotos, una al lado de la otra, a pantalla completa -->
+    <div class="pantalla pantalla-dos">
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé apoyado sobre un coche de juguete granate con el número 01. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-0207.jpg" alt="Bebé apoyado sobre un coche de juguete granate con el número 01"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormido con un lazo blanco en un capazo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-3728.jpg" alt="Bebé dormido con un lazo blanco en un capazo"></a>
+    </div>
+
+    <!-- Una foto alargada, de lado a lado y sin marcos -->
+    <div class="pantalla pantalla-ancha">
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con una diadema blanca tumbado sobre una colcha de patchwork. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-3551.jpg" alt="Bebé con una diadema blanca tumbado sobre una colcha de patchwork" loading="lazy"></a>
+    </div>
+
+    <!-- Una sola foto, con marco blanco alrededor -->
+    <div class="foto-sola zona-clara">
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-3594.jpg" alt="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado" loading="lazy"></a>
+    </div>
+
+    <!-- Bloque de 4 fotos -->
+    <div class="pantalla pantalla-cuatro">
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano de un bebé señalando el tapón de un coche de juguete granate. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-0214.jpg" alt="Mano de un bebé señalando el tapón de un coche de juguete granate" loading="lazy"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano de un bebé agarrada al asiento de un coche de juguete granate. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-0221.jpg" alt="Mano de un bebé agarrada al asiento de un coche de juguete granate" loading="lazy"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de los padres sujetando a un bebé vestido de rosa. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-3534.jpg" alt="Manos de los padres sujetando a un bebé vestido de rosa" loading="lazy"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-4998.jpg" alt="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo" loading="lazy"></a>
+    </div>
+
+    <!-- ===== FIRMA GRANDE. Acompaña mientras se ven las fotos y se queda en la última, al final.
+         Siempre lleva al inicio. Es blanca sobre las fotos y se pone oscura sola en los márgenes blancos. ===== -->
+    <a class="firma-grande" href="index.html" aria-label="Alejandro de Lucas, ir al inicio">
+      <img src="fotos/firma-blanca.png" alt="">
+    </a>
+
+  </main>
+
+  <!-- ===== ZONA CLARA DE ABAJO: los trabajos y el contacto ===== -->
+  <div class="zara-claro">
+
+    <!-- Bloque dividido en dos mitades: cada mitad es un enlace a su página.
+         Familia a la izquierda y Fotos analógicas a la derecha. Solo texto grande, sin fotos. -->
+    <section class="bloque-dividido">
+      <a class="bloque-mitad" href="familia.html">Familia</a>
+      <a class="bloque-mitad" href="analogicas.html">Fotos analógicas</a>
+    </section>
+
+    <!-- CONTACTO -->
+    <footer class="marco-contacto">
+      <a href="mailto:alejandrodelucascaldera@gmail.com">alejandrodelucascaldera@gmail.com</a>
+      <a href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer">@alexlucascaldera</a>
+      <a href="tel:+34722467468">+34 722 467 468</a>
+    </footer>
+
+  </div>
+
+  <script>
+    // Un clic (o una tecla) salta la intro: desaparece y la firma aparece enseguida.
+    function saltarIntro() {
+      document.documentElement.classList.remove('con-intro');
+      document.documentElement.classList.add('intro-saltada');
+    }
+    document.addEventListener('click', saltarIntro, { once: true });
+    document.addEventListener('keydown', saltarIntro, { once: true });
+  </script>
+
+  <script>
+    // Sobre las fotos la firma es blanca; al pasar por una zona clara (el marco blanco
+    // de la foto sola) se pone oscura. Vigila la franja inferior
+    // de la pantalla, que es donde está la firma.
+    var firma = document.querySelector('.firma-grande');
+    var claras = document.querySelectorAll('.zona-clara');
+    if (firma && claras.length && 'IntersectionObserver' in window) {
+      var dentro = new Set();
+      var vigilante = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) { dentro.add(e.target); } else { dentro.delete(e.target); }
+        });
+        firma.classList.toggle('firma-oscura', dentro.size > 0);
+      }, { rootMargin: '-65% 0px 0px 0px' });
+      claras.forEach(function (zona) { vigilante.observe(zona); });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Fotos originales: pesan unos 96 MB y llevan dentro datos de ubicación (EXIF).
+# La web usa las copias ligeras y sin datos de fotos/web/, que sí se suben.
+fotos/IMG*
+fotos/img_*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
