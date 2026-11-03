@@ -15,19 +15,14 @@
 
   <link rel="stylesheet" href="estilos.css">
 
-  <!-- Mientras dura la intro no se puede hacer scroll (se libera sola a los 1,3 segundos) -->
   <script>
-    document.documentElement.classList.add("con-intro");
-    setTimeout(function () { document.documentElement.classList.remove("con-intro"); }, 1300);
+    // La portada siempre se abre desde arriba: al llegar desde la firma de otra página, al recargar
+    // y al volver con la flecha del navegador (que si no, recordaría hasta dónde habías bajado).
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.addEventListener("pageshow", function () { window.scrollTo(0, 0); });
   </script>
 </head>
 <body class="zara">
-
-  <!-- ===== INTRO: al abrir la página sale tu nombre en grande y luego sube como una cortina.
-         Se repite cada vez. Un clic la salta. ===== -->
-  <div class="intro" aria-hidden="true">
-    <p class="intro-nombre">Alejandro de Lucas</p>
-  </div>
 
   <!-- Título de la página para buscadores y lectores de pantalla (no se ve) -->
   <h1 class="solo-lectores">Alejandro de Lucas, fotografía</h1>
@@ -39,8 +34,8 @@
 
     <!-- 2 fotos, una al lado de la otra, a pantalla completa -->
     <div class="pantalla pantalla-dos">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé apoyado sobre un coche de juguete granate con el número 01. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-0207.jpg" alt="Bebé apoyado sobre un coche de juguete granate con el número 01"></a>
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormido con un lazo blanco en un capazo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/img-3728.jpg" alt="Bebé dormido con un lazo blanco en un capazo"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé apoyado sobre un coche de juguete granate con el número 01. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/img-0207.jpg" alt="Bebé apoyado sobre un coche de juguete granate con el número 01"></a>
+      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormido con un lazo blanco en un capazo. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/img-3728.jpg" alt="Bebé dormido con un lazo blanco en un capazo"></a>
     </div>
 
     <!-- Una foto alargada, de lado a lado y sin marcos -->
@@ -88,15 +83,7 @@
 
   </div>
 
-  <script>
-    // Un clic (o una tecla) salta la intro: desaparece y la firma aparece enseguida.
-    function saltarIntro() {
-      document.documentElement.classList.remove('con-intro');
-      document.documentElement.classList.add('intro-saltada');
-    }
-    document.addEventListener('click', saltarIntro, { once: true });
-    document.addEventListener('keydown', saltarIntro, { once: true });
-  </script>
+  <script src="fotos-aleatorias.js"></script>
 
   <script>
     // Sobre las fotos la firma es blanca; al pasar por una zona clara (el marco blanco
@@ -104,6 +91,15 @@
     // de la pantalla, que es donde está la firma.
     var firma = document.querySelector('.firma-grande');
     var claras = document.querySelectorAll('.zona-clara');
+
+    // Pulsar la firma estando ya en la portada sube suavemente hasta arriba
+    if (firma) {
+      firma.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     if (firma && claras.length && 'IntersectionObserver' in window) {
       var dentro = new Set();
       var vigilante = new IntersectionObserver(function (entradas) {

@@ -213,14 +213,13 @@ h3 {
   color: var(--categoria);
 }
 
-@media (max-width: 45rem) {
-  
-
-  
-
+/* Pie: en pantallas que no son muy anchas, los tres datos pasan a una columna centrada
+   (con el correo largo no caben en una sola línea hasta unos 1360 px) */
+@media (max-width: 85rem) {
   .marco-contacto {
     flex-direction: column;
     align-items: center;
+    gap: 0.4rem;
     text-align: center;
   }
 }
@@ -505,7 +504,7 @@ html:has(.zara) {
 
 /* La firma de la portada aparece con un fundido suave al abrir la página */
 .firma-grande img {
-  animation: aparecer-firma 1.2s ease 1.2s both;   /* espera a que termine la intro */
+  animation: aparecer-firma 1.2s ease 0.3s both;
 }
 
 @keyframes aparecer-firma {
@@ -645,65 +644,6 @@ html:has(.zara) {
 }
 
 /* =========================================================
-   13. INTRO DE LA PORTADA: tu nombre en grande, encima de las fotos
-   Aparece, se queda un momento y se desvanece; entonces aparece la firma.
-   Dura 1,2 segundos y se repite cada vez que se abre la página.
-   ========================================================= */
-html.con-intro {
-  overflow: hidden;   /* mientras dura la intro no se puede hacer scroll */
-}
-
-.intro {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  padding: var(--margen);
-  pointer-events: none;
-  /* un velo oscuro suave sobre las fotos, para que se lea el nombre blanco */
-  background: rgba(20, 20, 20, 0.32);
-  animation: intro-velo 1.2s ease forwards;
-}
-
-.intro-nombre {
-  margin: 0;
-  font-family: var(--letra-titulos);
-  font-size: clamp(2.5rem, 9vw, 8rem);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #FFFFFF;
-}
-
-/* el velo y el nombre aparecen, se quedan y se desvanecen juntos */
-@keyframes intro-velo {
-  0% { opacity: 0; visibility: visible; }
-  20%, 60% { opacity: 1; visibility: visible; }
-  99% { opacity: 0; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-/* Si se pulsa para saltarla: fuera la intro y la firma aparece enseguida */
-.intro-saltada .intro {
-  display: none;
-}
-
-.intro-saltada .firma-grande img {
-  animation-delay: 0s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.con-intro {
-    overflow: auto;   /* sin intro no hace falta bloquear el scroll */
-  }
-
-  .intro {
-    display: none;   /* sin movimiento: no hay intro */
-  }
-}
-
-/* =========================================================
    14. FOTOS CON ENLACE AL INSTAGRAM
    Cada foto va dentro de un <a class="foto-enlace">; estas reglas hacen que el enlace
    ocupe el mismo sitio que ocupaba la foto, para que el diseño no cambie.
@@ -716,6 +656,11 @@ html.con-intro {
 
 .pantalla > .foto-enlace {
   overflow: hidden;
+}
+
+/* la foto alargada llena su caja a lo alto: sin esto, en el móvil quedaba una franja oscura debajo */
+.pantalla-ancha > .foto-enlace {
+  height: 100%;
 }
 
 /* la foto de una sola, con su marco blanco alrededor */
@@ -759,9 +704,9 @@ html.con-intro {
   border-left: 1px solid var(--texto);
 }
 
+/* al pasar el ratón, la mitad se pone gris y el texto sigue negro */
 .bloque-mitad:hover {
-  background: var(--texto);
-  color: var(--fondo);
+  background: var(--fondo-boton);
 }
 
 @media (max-width: 45rem) {
