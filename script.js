@@ -24,3 +24,31 @@ if ('IntersectionObserver' in window && titulosRevelar.length && !sinMovimiento)
     vigilante.observe(titulo);
   });
 }
+
+// =========================================================
+// 1. CARRUSEL DE FOTOS
+// Las flechas desplazan la fila de fotos; al llegar al principio o al final se ocultan.
+// =========================================================
+document.querySelectorAll('.carrusel').forEach(function (carrusel) {
+  const pista = carrusel.querySelector('.carrusel-pista');
+  const anterior = carrusel.querySelector('.carrusel-anterior');
+  const siguiente = carrusel.querySelector('.carrusel-siguiente');
+
+  function actualizar() {
+    anterior.disabled = pista.scrollLeft < 4;
+    siguiente.disabled = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4;
+  }
+
+  function mover(sentido) {
+    // avanza el ancho de las fotos que caben enteras
+    const foto = pista.querySelector('.foto-enlace').offsetWidth;
+    const caben = Math.max(1, Math.floor(pista.clientWidth / foto));
+    pista.scrollBy({ left: sentido * caben * foto, behavior: sinMovimiento ? 'auto' : 'smooth' });
+  }
+
+  anterior.addEventListener('click', function () { mover(-1); });
+  siguiente.addEventListener('click', function () { mover(1); });
+  pista.addEventListener('scroll', actualizar, { passive: true });
+  window.addEventListener('resize', actualizar);
+  actualizar();
+});

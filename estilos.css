@@ -34,6 +34,7 @@
   --fondo: var(--blanco-calido);
   --texto: #252525;                    /* nombre y títulos */
   --texto-suave: #555550;              /* textos de introducción */
+  --fondo-bloque: color-mix(in srgb, var(--texto) 6%, var(--fondo));   /* un tono más oscuro que el fondo: bloques de texto y botones de Familia / Fotos analógicas */
   --primario: var(--verde-retiro);
   --fondo-boton: var(--gris-suave);    /* fondo de los botones (con línea y texto negros) */
   --categoria: var(--verde-retiro);    /* localización y categoría */
@@ -109,7 +110,7 @@ h2 {
   padding: 0.85rem 2rem;
   border: 2px solid var(--texto);
   border-radius: 2rem;
-  background: var(--fondo-boton);
+  background: var(--fondo-bloque);
   color: var(--texto);
   text-decoration: none;
   letter-spacing: 0.02em;
@@ -165,7 +166,7 @@ h2 {
    5. MARCO DE LAS PÁGINAS DE DENTRO Y PIE DE PÁGINA
    ========================================================= */
 .marco {
-  --lado: clamp(3.5rem, 9vw, 7.5rem);   /* ancho de la columna lateral (y alto de la cabecera: la esquina es un cuadrado) */
+  --lado: clamp(3rem, 9vw, 7.5rem);   /* ancho de la columna lateral (y alto de la cabecera: la esquina es un cuadrado) */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -219,7 +220,6 @@ h2 {
    6. PRESENTACIÓN (texto a la izquierda y foto a la derecha)
    ========================================================= */
 .sobre {
-  --fondo-verde: color-mix(in srgb, var(--verde-oliva) 30%, var(--fondo));
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   margin-inline: calc(var(--lado) * -1);   /* ocupa todo el ancho de la pantalla */
@@ -231,8 +231,7 @@ h2 {
     clamp(1.5rem, 4vw, 3.5rem)
     clamp(2.5rem, 6vw, 4.5rem)
     calc(var(--lado) + var(--margen));
-  /* fondo verdoso */
-  background: var(--fondo-verde);
+  background: var(--fondo-bloque);
 }
 
 .sobre-texto h2 {
@@ -313,13 +312,18 @@ h2 {
   object-fit: cover;
 }
 
+/* En el móvil la presentación es solo el texto, a todo el ancho y sin la foto */
 @media (max-width: 45rem) {
   .sobre {
     grid-template-columns: 1fr;
   }
 
   .sobre-texto {
-    padding-right: var(--margen);
+    padding-inline: var(--margen);
+  }
+
+  .sobre-foto {
+    display: none;
   }
 }
 
@@ -440,6 +444,20 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+/* Pantalla con cinco fotos: dos arriba y tres abajo */
+.pantalla-cinco {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.pantalla-cinco > .foto-enlace {
+  grid-column: span 2;
+}
+
+.pantalla-cinco > .foto-enlace:nth-child(-n + 2) {
+  grid-column: span 3;
+}
+
 /* Zona clara de abajo: Familia | Fotos analógicas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
 .zara-claro {
   background: var(--fondo);
@@ -484,19 +502,6 @@ h2 {
   to { opacity: 1; }
 }
 
-@media (max-width: 45rem) {
-  /* en el móvil las fotos van una debajo de otra, cada una con su proporción */
-  .pantalla-dos,
-  .pantalla-tres {
-    flex-direction: column;
-  }
-
-  .pantalla-dos > .foto-enlace,
-  .pantalla-tres > .foto-enlace {
-    flex: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .firma-grande img {
     animation: none;
@@ -529,6 +534,93 @@ h2 {
   padding: clamp(4rem, 9vw, 7rem) var(--margen) clamp(2rem, 5vw, 4rem);
   font-size: clamp(2rem, 5vw, 3.5rem);
   text-align: center;
+}
+
+/* Carrusel: una fila de fotos cuadradas que se desliza. Las fotos se recortan a cuadrado (object-fit: cover) */
+.carrusel {
+  --tile: clamp(9rem, 26vw, 24rem);
+  position: relative;
+  background: var(--texto);
+}
+
+.carrusel-pista {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carrusel-pista::-webkit-scrollbar {
+  display: none;
+}
+
+.carrusel-pista > .foto-enlace {
+  flex: 0 0 var(--tile);
+  scroll-snap-align: start;
+}
+
+.carrusel-pista img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 35%;   /* las fotos verticales se recortan a cuadrado dejando la parte de arriba (las caras) */
+}
+
+/* sin JavaScript la pista queda vacía: no se muestra el carrusel */
+.carrusel:has(> .carrusel-pista:empty) {
+  display: none;
+}
+
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: -1.375rem;
+  padding: 0 0 0.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(247, 247, 245, 0.9);
+  color: var(--texto);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.carrusel-flecha:hover {
+  background: var(--fondo);
+}
+
+.carrusel-flecha:focus-visible {
+  outline: 2px solid var(--primario);
+  outline-offset: 2px;
+}
+
+.carrusel-anterior {
+  left: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.carrusel-siguiente {
+  right: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.carrusel-flecha[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* en el móvil las flechas son un poco más pequeñas (también se desliza con el dedo) */
+@media (max-width: 45rem) {
+  .carrusel-flecha {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-top: -1.125rem;
+    font-size: 1.5rem;
+  }
 }
 
 /* Botones al final de la página */
@@ -576,8 +668,8 @@ h2 {
 
 /* Medidas de la portada. El pie es el mismo que el de las páginas de dentro (.marco-contacto). */
 .zara {
-  --lado: clamp(3.5rem, 9vw, 7.5rem);                 /* igual que en las páginas de dentro */
-  --alto: clamp(8rem, min(28vw, 50vh), 24rem);        /* alto de la firma: nunca más del 50 % del alto de la ventana */
+  --lado: clamp(3rem, 9vw, 7.5rem);                 /* igual que en las páginas de dentro */
+  --alto: clamp(5.5rem, min(28vw, 50vh), 24rem);        /* alto de la firma: nunca más del 50 % del alto de la ventana */
 }
 
 /* Varios párrafos seguidos en la presentación */
@@ -632,17 +724,17 @@ h2 {
 .bloque-dividido {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  min-height: clamp(14rem, 45vh, 26rem);
+  min-height: clamp(8rem, min(28vw, 45vh), 26rem);
 }
 
 .bloque-mitad {
   display: grid;
   place-items: center;
   padding: var(--margen);
-  background: var(--fondo);
+  background: var(--fondo-bloque);
   color: var(--texto);
   font-family: var(--letra-titulos);
-  font-size: clamp(1.6rem, 4.5vw, 4rem);
+  font-size: clamp(1.15rem, 4.5vw, 4rem);
   line-height: 1.05;
   text-align: center;
   text-decoration: none;
@@ -657,17 +749,6 @@ h2 {
 /* al pasar el ratón, la mitad se pone gris y el texto sigue negro */
 .bloque-mitad:hover {
   background: var(--fondo-boton);
-}
-
-@media (max-width: 45rem) {
-  .bloque-dividido {
-    grid-template-columns: 1fr;
-  }
-
-  .bloque-mitad + .bloque-mitad {
-    border-left: 0;
-    border-top: 1px solid var(--texto);
-  }
 }
 
 /* =========================================================

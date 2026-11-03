@@ -79,6 +79,14 @@
       <a href="tel:+34722467468">+34 722 467 468</a>
     </footer>
 
+    <!-- CARRUSEL DE PIE: una fila de fotos cuadradas que se desliza con las flechas (o con el dedo).
+         Lleva TODAS las fotos de la lista de fotos-aleatorias.js, mezcladas en cada recarga: no hay que tocar nada aquí. -->
+    <div class="carrusel" role="region" aria-label="Más fotos">
+      <div class="carrusel-pista"></div>
+      <button class="carrusel-flecha carrusel-anterior" type="button" aria-label="Fotos anteriores">&#8249;</button>
+      <button class="carrusel-flecha carrusel-siguiente" type="button" aria-label="Fotos siguientes">&#8250;</button>
+    </div>
+
     <nav class="enlaces-legales" aria-label="Información legal">
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Política de privacidad</a>
@@ -88,6 +96,8 @@
   </div>
 
   <script src="fotos-aleatorias.js"></script>
+
+  <script src="script.js"></script>
 
   <script>
     // Sobre las fotos la firma es blanca; al pasar por una zona clara (el marco blanco
