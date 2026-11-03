@@ -24,21 +24,15 @@
    Cambia estos valores y cambia toda la web a la vez.
    ========================================================= */
 :root {
-  /* Paleta de marca */
+  /* Paleta de marca (solo los colores que usa la web) */
   --verde-retiro: #4B5F4A;
   --verde-oliva: #8A9A7A;
-  --tierra-madrid: #C9A96A;
-  --terracota: #A0563F;
-  --burdeos-suave: #6D2F2F;
-  --azul-cielo: #8FA7B8;
   --blanco-calido: #F7F7F5;
   --gris-suave: #D3D3CB;
-  --gris-medio: #8A8A8A;
-  --negro-mate: #1F1F1F;
 
   /* Cómo se usa la paleta en la web */
   --fondo: var(--blanco-calido);
-  --texto: #252525;                    /* nombre, títulos y menú */
+  --texto: #252525;                    /* nombre y títulos */
   --texto-suave: #555550;              /* textos de introducción */
   --primario: var(--verde-retiro);
   --fondo-boton: var(--gris-suave);    /* fondo de los botones (con línea y texto negros) */
@@ -59,10 +53,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;   /* al pulsar un enlace del menú, baja suavemente */
-}
-
 body {
   margin: 0;
   background: var(--fondo);
@@ -81,15 +71,13 @@ a {
   color: inherit;
 }
 
-a:focus-visible,
-button:focus-visible {
+a:focus-visible {
   outline: 2px solid var(--primario);
   outline-offset: 3px;
 }
 
 h1,
-h2,
-h3 {
+h2 {
   margin: 0;
   text-align: center;
   font-family: var(--letra-titulos);
@@ -109,16 +97,11 @@ h2 {
   font-size: clamp(1.9rem, 4vw, 2.75rem);
 }
 
-h3 {
-  font-size: 1.3rem;
-}
-
 /* Todas las secciones tienen el mismo espacio arriba, abajo y a los lados */
 .seccion {
   max-width: var(--ancho-maximo);
   margin: 0 auto;
   padding: var(--espacio) var(--margen);
-  scroll-margin-top: 4rem;   /* para que la cabecera fija no tape el título */
 }
 
 .boton {
@@ -179,18 +162,7 @@ h3 {
 }
 
 /* =========================================================
-   4. MOVIMIENTO REDUCIDO
-   ========================================================= */
-
-/* Si la persona ha pedido menos animaciones en su ordenador, las quitamos */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* =========================================================
-   5. MARCO DE LAS PÁGINAS DE DENTRO Y TARJETAS DE LA PORTADA
+   5. MARCO DE LAS PÁGINAS DE DENTRO Y PIE DE PÁGINA
    ========================================================= */
 .marco {
   --lado: clamp(3.5rem, 9vw, 7.5rem);   /* ancho de la columna lateral (y alto de la cabecera: la esquina es un cuadrado) */
@@ -207,12 +179,10 @@ h3 {
 }
 
 .marco-cabecera {
-  position: relative;   /* para colocar el menú de hamburguesa en la esquina */
+  position: relative;   /* para colocar la firma en la esquina */
   padding: clamp(1rem, 2.5vw, 1.75rem) var(--margen);
   text-align: center;
 }
-
-/* Título centrado dentro de la tarjeta (sin marco) */
 
 .marco-contacto {
   display: flex;
@@ -355,7 +325,7 @@ h3 {
 
 /* =========================================================
    7. CABECERA DE LAS PÁGINAS DE DENTRO
-   (firma a la izquierda, apartado en el centro, menú a la derecha)
+   (firma a la izquierda y apartado en el centro)
    ========================================================= */
 .cabecera-interna {
   display: grid;
@@ -470,7 +440,7 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-/* Zona clara de abajo: tarjetas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
+/* Zona clara de abajo: Familia | Fotos analógicas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
 .zara-claro {
   background: var(--fondo);
 }
@@ -484,10 +454,8 @@ h3 {
 }
 
 /* =========================================================
-   10. PORTADA: FOTO SOLA CON MARGEN Y DOS CUADRADOS ABAJO
+   10. PORTADA: FOTO SOLA CON MARGEN
    ========================================================= */
-/* Pantalla con dos fotos, una al lado de la otra (la regla .pantalla > .foto-enlace reparte el ancho) */
-
 /* Una sola foto, centrada y con margen blanco alrededor */
 .foto-sola {
   --marco-v: clamp(2rem, 8vw, 6rem);   /* margen blanco de arriba y abajo */
@@ -505,8 +473,6 @@ h3 {
   aspect-ratio: var(--r, 1.5);
   object-fit: cover;
 }
-
-/* Abajo: solo dos cuadrados, con el mismo estilo de marco y título */
 
 /* La firma de la portada aparece con un fundido suave al abrir la página */
 .firma-grande img {
@@ -537,8 +503,6 @@ h3 {
   }
 }
 
-/* Foto alargada: de lado a lado y sin marcos (.pantalla ya hace el trabajo: una sola foto a todo el ancho) */
-
 /* Texto que no se ve pero sí lo leen buscadores y lectores de pantalla (el título de la página) */
 .solo-lectores {
   position: absolute;
@@ -555,13 +519,9 @@ h3 {
 /* =========================================================
    11. APARTADOS DENTRO DE UNA PÁGINA: título y bloques de fotos
    ========================================================= */
-/* Pantalla con tres fotos, una al lado de la otra */
-/* (.pantalla ya las coloca en fila; en el móvil van en columna) */
-
 /* Cada apartado ocupa todo el ancho de la pantalla */
 .apartado {
   margin-inline: calc(var(--lado) * -1);
-  scroll-margin-top: 1rem;
 }
 
 .apartado-titulo {
