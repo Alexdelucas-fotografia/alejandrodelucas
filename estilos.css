@@ -1,4 +1,25 @@
 /* =========================================================
+   0. TIPOGRAFÍA DE LOS TÍTULOS (Libre Baskerville)
+   Está guardada en la carpeta fuentes/ de la propia web: así no se pide a Google Fonts
+   y no se envía la dirección IP de los visitantes a Google.
+   ========================================================= */
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  font-weight: 400 700;   /* un solo archivo sirve para el grosor normal y el negrita */
+  font-display: swap;
+  src: url("fuentes/libre-baskerville-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/libre-baskerville-cursiva.woff2") format("woff2");
+}
+
+/* =========================================================
    1. COLORES, LETRAS Y MÁRGENES
    Cambia estos valores y cambia toda la web a la vez.
    ========================================================= */
@@ -718,4 +739,69 @@ html:has(.zara) {
     border-left: 0;
     border-top: 1px solid var(--texto);
   }
+}
+
+/* =========================================================
+   16. PÁGINAS LEGALES (aviso legal, privacidad y cookies) Y ENLACES DEL PIE
+   ========================================================= */
+.seccion.texto-legal {
+  max-width: 46rem;
+}
+
+.texto-legal h1 {
+  max-width: none;
+  margin: 0 0 2rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.texto-legal h2 {
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.texto-legal p,
+.texto-legal li {
+  color: var(--texto-suave);
+}
+
+.texto-legal p {
+  margin: 0 0 1rem;
+}
+
+.texto-legal ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.texto-legal a {
+  color: var(--texto);
+  text-underline-offset: 0.15em;
+}
+
+/* Datos que faltan por completar: se ven en amarillo para no olvidarlos antes de publicar */
+.completar {
+  padding: 0 0.25em;
+  border-radius: 0.2em;
+  background: #FFE08A;
+  color: var(--texto);
+}
+
+/* Enlaces legales, pequeños y centrados, debajo del pie */
+.enlaces-legales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.5rem;
+  padding: 0.5rem var(--margen) 2rem;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+.enlaces-legales a {
+  text-decoration: none;
+}
+
+.enlaces-legales a:hover {
+  text-decoration: underline;
 }

@@ -1,0 +1,4 @@
+Libre Baskerville (tipografía de los títulos)
+Copyright 2012 The Libre Baskerville Project Authors (https://github.com/impallari/Libre-Baskerville)
+Licencia: SIL Open Font License 1.1 - https://openfontlicense.org
+Se aloja aquí, dentro de la web, para no pedirla a Google Fonts (así no se envía la IP de los visitantes a Google).
