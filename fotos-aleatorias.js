@@ -47,11 +47,25 @@
     { f: 'Sesión 1/Familia Sesión 1 (22).JPG', vertical: true, alt: 'Un niño sonriente con camisa de rayas corre con una manzana en la mano' },
     { f: 'Sesión 1/Familia Sesión 1 (23).JPG', vertical: true, bn: true, alt: 'Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro' },
     { f: 'Sesión 1/Familia Sesión 1 (24).JPG', bebe: true, bn: true, alt: 'Bebé tumbado sobre una alfombra de pelo con camisa de cuadros, mirando hacia un lado, en blanco y negro' },
+    { f: 'Sesión 1/Familia Sesión 1 (25).JPG', bn: true, alt: 'Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro' },
+    { f: 'Sesión 1/Familia Sesión 1 (26).JPG', bebe: true, vertical: true, alt: 'Los padres y dos hermanos besan a un bebé con peto de cuadros, rodeado de manzanas' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (1).jpg', bebe: true, alt: 'Manos de una madre sujetando la manita de un recién nacido con jersey de punto' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (2).jpg', bebe: true, alt: 'Recién nacido dormido en brazos de su madre, con la mano de ella junto a su cara' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (3).jpg', bebe: true, alt: 'Recién nacido dormido junto a una ventana, en brazos de su madre' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (4).jpg', bebe: true, alt: 'Recién nacido dormido junto al pecho de su madre, que lo sujeta con la mano' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (5).jpg', bebe: true, alt: 'Recién nacido dormido con un jersey de punto, mirando hacia un lado' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (6).jpg', bebe: true, vertical: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto' },
+    { f: 'Sesión 2/Sesion 2 familia y RN (7).jpg', bebe: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (1).jpg', bebe: true, bn: true, alt: 'Recién nacido dormido junto al pecho de su madre, que lo sujeta con la mano, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (2).jpg', bebe: true, bn: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (3).jpg', bebe: true, bn: true, alt: 'Recién nacido dormido en brazos de su madre, con la mano de ella junto a su cara, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (4).jpg', bebe: true, bn: true, alt: 'Recién nacido dormido junto a una ventana, en brazos de su madre, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (5).jpg', bebe: true, bn: true, alt: 'Recién nacido dormido con un jersey de punto, mirando hacia un lado, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (6).jpg', bebe: true, vertical: true, bn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en blanco y negro' },
+    { f: 'Sesión 2/Sesión 2 familia y RN (BN) (7).jpg', bebe: true, bn: true, alt: 'Manos de una madre sujetando la manita de un recién nacido con jersey de punto, en blanco y negro' },
     { f: 'Martín/Martín (1).jpg', bebe: true, vertical: true, alt: 'Bebé apoyado sobre un coche de juguete granate con el número 01' },
     { f: 'Martín/Martín (2).jpg', bebe: true, alt: 'Mano de un bebé señalando el tapón de un coche de juguete granate' },
-    { f: 'Martín/Martín (3).jpg', bebe: true, alt: 'Mano de un bebé agarrada al asiento de un coche de juguete granate' },
-    { f: 'Martín/Martín (4).jpg', bebe: true, alt: 'Mano de un niño acercando un mordedor a la cara de una oveja de peluche' },
-    { f: 'Martín/Martín.JPG', vertical: true, alt: 'Niño visto de espaldas, con camisa de cuadros azul, tocando hojas secas en el suelo' }
+    { f: 'Martín/Martín (3).jpg', bebe: true, alt: 'Mano de un bebé agarrada al asiento de un coche de juguete granate' }
   ];
 
   // carrusel del pie: una foto cuadrada por cada foto de la lista, en orden aleatorio
