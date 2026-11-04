@@ -6,6 +6,7 @@
 //   vertical: true si la foto es vertical 2:3 (solo se usa en huecos altos, para que no se recorte)
 //   bn: true si la foto es en blanco y negro (las demás se consideran de color)
 //   bebe: true si en la foto sale un bebé (solo esas fotos pueden ir en un apartado con data-tema="bebe")
+// Forma: un hueco con data-forma="vertical" (o "horizontal") en su <a class="foto-enlace"> solo recibe fotos verticales (u horizontales).
 // Tono: un apartado con data-tono="color" solo recibe fotos de color, y uno con data-tono="bn"
 // solo fotos en blanco y negro (en analogicas.html: <section class="apartado" data-tono="bn">).
 // Los huecos que no están dentro de un apartado con data-tono admiten cualquier foto.
@@ -159,8 +160,17 @@
     return apartado ? apartado.getAttribute('data-tema') : null;
   }
 
+  // la forma que pide el hueco: 'vertical', 'horizontal' o null (cualquiera); se marca con data-forma en el <a> del hueco
+  function formaDe(img) {
+    var marca = img.closest('[data-forma]');
+    return marca ? marca.getAttribute('data-forma') : null;
+  }
+
   // ¿puede ir esta foto en este hueco?
   function admite(img, f) {
+    var forma = formaDe(img);
+    if (forma === 'vertical' && !f.vertical) return false;     // hueco vertical: solo fotos verticales
+    if (forma === 'horizontal' && f.vertical) return false;    // hueco horizontal: solo fotos horizontales
     if (f.vertical && !esHuecoAlto(img)) return false;   // la vertical, solo en huecos altos
     if (temaDe(img) === 'bebe' && !f.bebe) return false;   // "Recién nacido": solo fotos de bebés
     var tono = tonoDe(img);
