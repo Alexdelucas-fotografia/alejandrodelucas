@@ -12,6 +12,7 @@
 // Tema: un apartado con data-tema="bebe" solo recibe fotos con bebe: true (en familia.html: "Recién nacido").
 // Las fotos tienen que ser 3:2 (horizontales) o 2:3 (verticales) y pesar menos de 1 MB.
 // El carrusel del pie de página lleva TODAS las fotos de esta lista (mezcladas en cada recarga) y las recorta a cuadrado.
+// Usa las copias ligeras de fotos/carrusel/ (mismo nombre que el original). Al añadir una foto nueva a la lista, pon también su copia ligera ahí.
 // No sigue la regla de no repetir: es la galería completa, así que las fotos de los bloques también salen en él.
 // Se sortean TODAS las fotos de la página, también la de presentación (la de al lado de tu texto).
 // Regla: en una misma página no se repite ninguna foto. Solo se repetiría si la página tuviera
@@ -21,6 +22,7 @@
 // =========================================================
 (function () {
   var carpeta = 'fotos/web/Familia/';
+  var carpetaCarrusel = 'fotos/carrusel/';   // copias ligeras (1200 px) de todas las fotos, solo para el carrusel
 
   var fotos = [
     { f: 'Sesión 1/Familia Sesión 1  (1).jpg', bebe: true, alt: 'Bebé dormido con un lazo blanco en un capazo' },
@@ -80,7 +82,7 @@
       enlace.rel = 'noopener noreferrer';
       enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
       var foto = document.createElement('img');
-      foto.src = encodeURI(carpeta + f.f);
+      foto.src = encodeURI(carpetaCarrusel + f.f.split('/').pop());   // copia ligera, mismo nombre de archivo
       foto.alt = f.alt;
       foto.loading = 'lazy';
       enlace.appendChild(foto);
