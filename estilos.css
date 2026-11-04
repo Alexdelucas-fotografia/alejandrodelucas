@@ -789,14 +789,6 @@ h2 {
   text-underline-offset: 0.15em;
 }
 
-/* Datos que faltan por completar: se ven en amarillo para no olvidarlos antes de publicar */
-.completar {
-  padding: 0 0.25em;
-  border-radius: 0.2em;
-  background: #FFE08A;
-  color: var(--texto);
-}
-
 /* Enlaces legales, pequeños y centrados, debajo del pie */
 .enlaces-legales {
   display: flex;
