@@ -495,6 +495,13 @@ h2 {
   object-fit: cover;
 }
 
+/* Espacio en blanco de lado a lado entre dos bloques de la portada. Para hacerlo más alto o más bajo, cambia --hueco */
+.hueco-fila {
+  --hueco: clamp(3rem, 10vw, 9rem);
+  height: var(--hueco);
+  background: var(--fondo);
+}
+
 /* La firma de la portada aparece con un fundido suave al abrir la página */
 .firma-grande img {
   animation: aparecer-firma 1.2s ease 0.3s both;
