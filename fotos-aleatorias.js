@@ -6,12 +6,16 @@
 //   vertical: true si la foto es vertical 2:3 (solo se usa en huecos altos, para que no se recorte)
 //   bn: true si la foto es en blanco y negro (las demás se consideran de color)
 //   rn: true si la foto es de recién nacido: lleva " RN " en el nombre del archivo (solo esas fotos pueden ir en un apartado con data-tema="rn")
-//   Las fotos con "embarazo" en el nombre no llevan marca: no pueden ir en "Recién nacido" y sí en el resto de apartados.
+//   tripa: true si en la foto se ve la tripa de la embarazada (solo hay fotos así en la Sesión 4, la de embarazo)
+//   NORMA DE LA TRIPA: las fotos con tripa: true solo pueden salir en el apartado Embarazo (data-tema="tripa")
+//   y nunca en Reportajes familiares (data-excluye="tripa"). En el resto de la web (portada, analógicas, carrusel) pueden salir.
 // Forma: un hueco con data-forma="vertical" (o "horizontal") en su <a class="foto-enlace"> solo recibe fotos verticales (u horizontales).
 // Tono: un apartado con data-tono="color" solo recibe fotos de color, y uno con data-tono="bn"
 // solo fotos en blanco y negro (en analogicas.html: <section class="apartado" data-tono="bn">).
 // Los huecos que no están dentro de un apartado con data-tono admiten cualquier foto.
-// Tema: un apartado con data-tema="rn" solo recibe fotos con rn: true (en familia.html: "Recién nacido").
+// Tema: un apartado con data-tema="rn" solo recibe fotos con rn: true, y uno con data-tema="tripa" solo fotos con tripa: true
+// (en familia.html: "Recién nacido" y "Embarazo"). Las fotos con rn o tripa SÍ pueden salir en los apartados sin tema.
+// Excluir: un apartado con data-excluye="tripa" nunca recibe fotos con tripa: true (en familia.html: "Reportajes familiares").
 // Las fotos tienen que ser 3:2 (horizontales) o 2:3 (verticales) y pesar menos de 1 MB.
 // El carrusel del pie de página lleva TODAS las fotos de esta lista (mezcladas en cada recarga) y las recorta a cuadrado.
 // Usa las copias ligeras de fotos/carrusel/ (mismo nombre que el original). Al añadir una foto nueva a la lista, pon también su copia ligera ahí.
@@ -67,20 +71,20 @@
     { f: 'Sesión 3/Familia y RN sesión 3 (12).jpg', rn: true, bn: true, alt: 'Recién nacido dormido con un jersey de punto, mirando hacia un lado, en blanco y negro' },
     { f: 'Sesión 3/Familia y RN sesión 3 (13).jpg', rn: true, vertical: true, bn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en blanco y negro' },
     { f: 'Sesión 3/Familia y RN sesión 3 (14).jpg', rn: true, bn: true, alt: 'Manos de una madre sujetando la manita de un recién nacido con jersey de punto, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (1).JPG', alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (2).jpg', bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba, en blanco y negro' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (1).JPG', tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (2).jpg', tripa: true, bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (3).JPG', alt: 'Pareja abrazada en el parque al atardecer, con ella de ojos entrecerrados' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (4).jpg', bn: true, alt: 'Pareja abrazada en el parque, con ella de ojos entrecerrados, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (5).jpg', bn: true, alt: 'Pareja abrazada en el parque mientras él le besa la frente, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (6).JPG', alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor proyectada en ella' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (6).JPG', tripa: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor proyectada en ella' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (7).JPG', alt: 'Pareja en el parque: él le da un beso en la mejilla mientras ella mira a la cámara' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (8).JPG', alt: 'Pareja besándose a contraluz al atardecer en el parque' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (9).jpg', bn: true, alt: 'Pareja besándose a contraluz en el parque, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (10).JPG', alt: 'Pareja sonriéndose frente a frente en el parque, él con camisa vaquera' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (11).JPG', alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (12).jpg', bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (13).JPG', alt: 'Embarazada sentada en la hierba al atardecer, con las manos sobre la tripa' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (14).jpg', bn: true, alt: 'Embarazada sentada en la hierba, con las manos sobre la tripa, en blanco y negro' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (11).JPG', tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (12).jpg', tripa: true, bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos, en blanco y negro' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (13).JPG', tripa: true, alt: 'Embarazada sentada en la hierba al atardecer, con las manos sobre la tripa' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (14).jpg', tripa: true, bn: true, alt: 'Embarazada sentada en la hierba, con las manos sobre la tripa, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (15).jpg', bn: true, alt: 'Pareja abrazada en el parque, él sonriendo con la cabeza apoyada en la de ella, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (16).JPG', alt: 'Manos entrelazadas de la pareja a contraluz' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (17).jpg', bn: true, alt: 'Manos entrelazadas de la pareja a contraluz, en blanco y negro' },
@@ -89,9 +93,9 @@
     { f: 'Sesión 4/Sesion familia y embarazo 4 (20).jpg', bn: true, alt: 'Pareja bailando abrazada entre árboles de otoño, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (21).JPG', alt: 'Pareja bailando y girando en el parque al atardecer, con el pelo de ella al vuelo' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (22).jpg', bn: true, alt: 'Pareja bailando y girando en el parque, con el pelo de ella al vuelo, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (23).jpg', bn: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (24).JPG', alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (25).jpg', bn: true, alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada, en blanco y negro' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (23).jpg', tripa: true, bn: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor, en blanco y negro' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (24).JPG', tripa: true, alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada' },
+    { f: 'Sesión 4/Sesion familia y embarazo 4 (25).jpg', tripa: true, bn: true, alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (26).JPG', vertical: true, alt: 'Pareja sonriendo con las manos juntas, ella riendo con la cara hacia arriba' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (27).jpg', vertical: true, bn: true, alt: 'Pareja sonriendo con las manos juntas, ella riendo con la cara hacia arriba, en blanco y negro' },
     { f: 'Sesión 4/Sesion familia y embarazo 4 (28).JPG', alt: 'Pareja abrazada en el parque al atardecer, él sonriendo con la cabeza junto a la de ella' },
@@ -138,10 +142,16 @@
     return apartado ? apartado.getAttribute('data-tono') : null;
   }
 
-  // el tema que pide el apartado donde está el hueco: 'rn' o null (cualquiera)
+  // el tema que pide el apartado donde está el hueco: 'rn', 'tripa' o null (cualquiera)
   function temaDe(img) {
     var apartado = img.closest('[data-tema]');
     return apartado ? apartado.getAttribute('data-tema') : null;
+  }
+
+  // lo que el apartado donde está el hueco NO admite: 'tripa' o null (nada)
+  function excluyeDe(img) {
+    var apartado = img.closest('[data-excluye]');
+    return apartado ? apartado.getAttribute('data-excluye') : null;
   }
 
   // la forma que pide el hueco: 'vertical', 'horizontal' o null (cualquiera); se marca con data-forma en el <a> del hueco
@@ -156,7 +166,10 @@
     if (forma === 'vertical' && !f.vertical) return false;     // hueco vertical: solo fotos verticales
     if (forma === 'horizontal' && f.vertical) return false;    // hueco horizontal: solo fotos horizontales
     if (f.vertical && !esHuecoAlto(img)) return false;   // la vertical, solo en huecos altos
-    if (temaDe(img) === 'rn' && !f.rn) return false;       // "Recién nacido": solo fotos con RN en el nombre
+    var tema = temaDe(img);
+    if (tema === 'rn' && !f.rn) return false;                 // "Recién nacido": solo fotos con RN en el nombre
+    if (tema === 'tripa' && !f.tripa) return false;           // "Embarazo": solo fotos donde se ve la tripa
+    if (excluyeDe(img) === 'tripa' && f.tripa) return false;  // "Reportajes familiares": nunca fotos con la tripa
     var tono = tonoDe(img);
     if (tono === 'bn') return !!f.bn;                    // blanco y negro: solo fotos en blanco y negro
     if (tono === 'color') return !f.bn;                  // color: solo fotos de color
