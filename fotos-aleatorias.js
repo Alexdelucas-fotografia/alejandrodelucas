@@ -6,7 +6,8 @@
 //   vertical: true si la foto es vertical 2:3 (solo se usa en huecos altos, para que no se recorte)
 //   bn: true si la foto es en blanco y negro (las demás se consideran de color)
 //   rn: true si la foto es de recién nacido: lleva " RN " en el nombre del archivo (solo esas fotos pueden ir en un apartado con data-tema="rn")
-//   tripa: true si en la foto se ve la tripa de la embarazada (solo hay fotos así en la Sesión 4, la de embarazo)
+//   tripa: true si en la foto se ve la tripa de la embarazada. NO lo escribas a mano: lo pone y lo quita solo detectar-tripa.mjs
+//     (se ejecuta al final de crear-copias-ligeras.bat) mirando las fotos que llevan "embarazo" en el nombre del archivo.
 //   NORMA DE LA TRIPA: las fotos con tripa: true solo pueden salir en el apartado Embarazo (data-tema="tripa")
 //   y nunca en Reportajes familiares (data-excluye="tripa"). En el resto de la web (portada, analógicas, carrusel) pueden salir.
 // Forma: un hueco con data-forma="vertical" (o "horizontal") en su <a class="foto-enlace"> solo recibe fotos verticales (u horizontales).

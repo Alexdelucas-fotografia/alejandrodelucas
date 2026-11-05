@@ -9,6 +9,8 @@
 #      La copia tiene EXACTAMENTE el mismo nombre que la foto original.
 #   2. Avisa de las fotos que todavia no estan en la lista de fotos-aleatorias.js (hay que anadirlas).
 #   3. Avisa de las copias que ya no tienen foto original. No borra nada.
+#   4. Al final ejecuta detectar-tripa.mjs, que mira las fotos con "embarazo" en el nombre y marca solo
+#      las de la lista donde se ve la tripa (tripa: true). La primera vez descarga el modelo (unos 300 MB).
 # Tus fotos originales no se tocan nunca.
 
 param([switch]$Todo)
@@ -103,3 +105,12 @@ Get-ChildItem -LiteralPath $destino -File | Where-Object { $nombres -cnotcontain
 }
 
 if ($avisos -eq 0) { Write-Host 'Todo en orden: cada foto tiene su copia y esta en la lista.' -ForegroundColor Green }
+
+# --- deteccion automatica de las fotos donde se ve la tripa (ver detectar-tripa.mjs) ---
+Write-Host ''
+if (Get-Command node -ErrorAction SilentlyContinue) {
+  & node (Join-Path $raiz 'detectar-tripa.mjs')
+  if ($LASTEXITCODE -ne 0) { Write-Host 'AVISO: no se ha podido detectar la tripa (mira el mensaje de arriba). Las marcas de la lista no se han cambiado.' -ForegroundColor Yellow }
+} else {
+  Write-Host 'AVISO: no encuentro Node.js, asi que no se detectan las fotos con tripa. Instalalo desde nodejs.org.' -ForegroundColor Yellow
+}
