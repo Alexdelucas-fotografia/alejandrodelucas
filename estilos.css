@@ -26,7 +26,6 @@
 :root {
   /* Paleta de marca (solo los colores que usa la web) */
   --verde-retiro: #4B5F4A;
-  --verde-oliva: #8A9A7A;
   --blanco-calido: #F7F7F5;
   --gris-suave: #D3D3CB;
 
@@ -38,6 +37,7 @@
   --primario: var(--verde-retiro);
   --fondo-boton: var(--gris-suave);    /* fondo de los botones (con línea y texto negros) */
   --categoria: var(--verde-retiro);    /* localización y categoría */
+  --marco-v: clamp(2rem, 8vw, 6rem);   /* espacio blanco entre bloques de la portada: arriba y abajo de la foto sola y el hueco entre bloques */
 
   --letra-titulos: "Libre Baskerville", serif;
   --letra-texto: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -439,28 +439,8 @@ h2 {
 }
 
 /* =========================================================
-   9. PORTADA: BLOQUE DE 4 FOTOS Y ZONA CLARA DE ABAJO
+   9. PORTADA: ZONA CLARA DE ABAJO
    ========================================================= */
-/* Pantalla con cuatro fotos (2 x 2) */
-.pantalla-cuatro {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-/* Pantalla con cinco fotos: dos arriba y tres abajo */
-.pantalla-cinco {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.pantalla-cinco > .foto-enlace {
-  grid-column: span 2;
-}
-
-.pantalla-cinco > .foto-enlace:nth-child(-n + 2) {
-  grid-column: span 3;
-}
-
 /* Zona clara de abajo: Familia | Fotos analógicas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
 .zara-claro {
   background: var(--fondo);
@@ -479,7 +459,6 @@ h2 {
    ========================================================= */
 /* Una sola foto, centrada y con margen blanco alrededor */
 .foto-sola {
-  --marco-v: clamp(2rem, 8vw, 6rem);   /* margen blanco de arriba y abajo */
   display: grid;
   place-items: center;
   grid-template-columns: minmax(0, 1fr);
@@ -495,10 +474,10 @@ h2 {
   object-fit: cover;
 }
 
-/* Espacio en blanco de lado a lado entre dos bloques de la portada. Para hacerlo más alto o más bajo, cambia --hueco */
+/* Espacio en blanco de lado a lado entre dos bloques de la portada: mide lo mismo que el margen blanco
+   de la foto sola (--marco-v). Para cambiar todos los espacios a la vez, cambia --marco-v arriba */
 .hueco-fila {
-  --hueco: clamp(3rem, 10vw, 9rem);
-  height: var(--hueco);
+  height: var(--marco-v);
   background: var(--fondo);
 }
 

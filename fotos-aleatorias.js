@@ -129,7 +129,7 @@
 
   // las fotos verticales solo van en huecos altos (donde la foto no queda como una tira estrecha)
   function esHuecoAlto(img) {
-    return !img.closest('.pantalla-ancha') && !img.closest('.pantalla-cuatro') && !img.closest('.pantalla-cinco');
+    return !img.closest('.pantalla-ancha');
   }
 
   // el tono que pide el apartado donde está el hueco: 'color', 'bn' o null (cualquiera)
