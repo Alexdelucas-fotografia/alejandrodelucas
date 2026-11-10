@@ -23,10 +23,11 @@ import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const RAIZ = path.dirname(fileURLToPath(import.meta.url));
-const LISTA = path.join(RAIZ, 'fotos-aleatorias.js');
+const AQUI = path.dirname(fileURLToPath(import.meta.url));   // la carpeta scripts/
+const RAIZ = path.resolve(AQUI, '..');                      // la raíz del proyecto
+const LISTA = path.join(AQUI, 'fotos-aleatorias.js');
 const CARRUSEL = path.join(RAIZ, 'fotos', 'carrusel');
-const CACHE = path.join(RAIZ, 'tripa-detectado.json');
+const CACHE = path.join(AQUI, 'tripa-detectado.json');
 const HERRAMIENTAS = path.join(process.env.LOCALAPPDATA || os.homedir(), 'mi-web-tripa');
 
 const METODO = 'v2';    // si se cambian las etiquetas o el umbral, se cambia este nombre y se vuelven a analizar todas las fotos

@@ -12,9 +12,9 @@
   <link rel="preload" href="fuentes/libre-baskerville-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Icono de la pestaña: la firma -->
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="192x192" href="icono-192.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="iconos/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="iconos/icono-192.png">
+  <link rel="apple-touch-icon" href="iconos/apple-touch-icon.png">
 
   <link rel="stylesheet" href="estilos.css">
 
@@ -95,10 +95,10 @@
     <!-- Tres botones, uno debajo de otro y a todo el ancho, separados por líneas negras: cada uno es un enlace a su página.
          Solo texto grande, sin fotos. Para cambiar el grosor de las líneas, mira --borde en estilos.css -->
     <section class="bloque-dividido">
-      <a class="bloque-mitad" href="familia.html">Reportajes familiares</a>
-      <a class="bloque-mitad" href="analogicas.html">Fotos analógicas</a>
-      <a class="bloque-mitad" href="fotografia-de-autor.html">Fotografía de autor</a>
-      <a class="bloque-mitad" href="por-que-blanco-y-negro.html">¿Por qué blanco y negro?</a>
+      <a class="bloque-mitad" href="pages/familia.html">Reportajes familiares</a>
+      <a class="bloque-mitad" href="pages/analogicas.html">Fotos analógicas</a>
+      <a class="bloque-mitad" href="pages/fotografia-de-autor.html">Fotografía de autor</a>
+      <a class="bloque-mitad" href="pages/por-que-blanco-y-negro.html">¿Por qué blanco y negro?</a>
     </section>
 
     <!-- CONTACTO -->
@@ -117,23 +117,19 @@
     </div>
 
     <nav class="enlaces-legales" aria-label="Información legal">
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="privacidad.html">Política de privacidad</a>
-      <a href="cookies.html">Política de cookies</a>
+      <a href="pages/aviso-legal.html">Aviso legal</a>
+      <a href="pages/privacidad.html">Política de privacidad</a>
+      <a href="pages/cookies.html">Política de cookies</a>
     </nav>
 
   </div>
 
-  <script src="fotos-aleatorias.js"></script>
+  <script src="scripts/fotos-aleatorias.js"></script>
 
-  <script src="script.js"></script>
+  <script src="scripts/script.js"></script>
 
   <script>
-    // Sobre las fotos la firma es blanca; al pasar por una zona clara (el marco blanco
-    // de la foto sola) se pone oscura. Vigila la franja inferior
-    // de la pantalla, que es donde está la firma.
     var firma = document.querySelector('.firma-grande');
-    var claras = document.querySelectorAll('.zona-clara');
 
     // Pulsar la firma estando ya en la portada sube suavemente hasta arriba
     if (firma) {
@@ -143,16 +139,6 @@
       });
     }
 
-    if (firma && claras.length && 'IntersectionObserver' in window) {
-      var dentro = new Set();
-      var vigilante = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          if (e.isIntersecting) { dentro.add(e.target); } else { dentro.delete(e.target); }
-        });
-        firma.classList.toggle('firma-oscura', dentro.size > 0);
-      }, { rootMargin: '-65% 0px 0px 0px' });
-      claras.forEach(function (zona) { vigilante.observe(zona); });
-    }
   </script>
 
   <!-- Cloudflare Web Analytics -->
