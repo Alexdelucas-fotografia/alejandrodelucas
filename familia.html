@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CAMBIA "Tu Ciudad" -->
-  <title>Familia · Alejandro de Lucas</title>
+  <title>Reportajes familiares · Alejandro de Lucas</title>
   <meta name="description" content="Sesiones de fotos de familia de Alejandro de Lucas en Tu Ciudad.">
 
   <!-- Tipo de letra de los títulos: está en la carpeta fuentes/ (no se pide a Google). El texto usa Helvetica -->
@@ -25,81 +25,84 @@
     <a class="firma" href="index.html" aria-label="Alejandro de Lucas, ir al inicio">
       <img src="fotos/Portada/firma-oscura.png" alt="">
     </a>
-    <p class="cabecera-seccion">Familia</p>
+    <p class="cabecera-seccion">Reportajes familiares</p>
   </header>
 
 
 
   <main>
 
-    <!-- El título "Familia" ya está arriba, en el centro de la cabecera. Aquí queda oculto
+    <!-- El título "Reportajes familiares" ya está arriba, en el centro de la cabecera. Aquí queda oculto
          (solo lo leen los buscadores y los lectores de pantalla). -->
-    <h1 class="solo-lectores">Familia</h1>
+    <h1 class="solo-lectores">Reportajes familiares</h1>
 
     <!-- ===== PRESENTACIÓN: texto a la izquierda y tu foto a la derecha.
-         CAMBIA el subtítulo, el texto, "Mi manera de trabajar" y la foto ===== -->
+         CAMBIA el subtítulo, el texto y la foto ===== -->
     <section class="sobre">
       <div class="sobre-texto">
         <h2>Alejandro de Lucas</h2>
         <p class="sobre-subtitulo">Fotógrafo de familia, pareja y embarazo en Madrid</p>
         <p class="sobre-parrafo">Vivo en Madrid y la fotografía siempre me ha acompañado a todas partes. Me apasiona capturar esos momentos que pasan sin avisar: una risa a destiempo, una mirada cómplice, una mano que busca otra mano.</p>
-        <p class="sobre-parrafo">He sido padre hace muy poquito, y eso ha cambiado mi forma de mirar al mundo. Estoy descubriendo lo rápido que pasa todo y lo mucho que se agradece tener un recuerdo real de cómo somos ahora. Por eso me encanta fotografiar a las familias. Porque todas son etapas únicas que merecen guardarse con cariño.</p>
-        <p class="sobre-parrafo">Mi idea es sencilla, que estéis cómodos delante de la cámara y que las fotos sean naturales y llenas de vida.</p>
+        <p class="sobre-parrafo">He sido padre hace muy poquito, y eso ha cambiado mi forma de mirar al mundo. Estoy descubriendo lo rápido que pasa todo y lo mucho que se agradece tener un recuerdo real de cómo somos ahora. Por eso me encanta fotografiar a las familias: todas son etapas únicas que merecen guardarse con cariño.</p>
+        <p class="sobre-parrafo">Mi idea es sencilla: que estéis cómodos delante de la cámara y que las fotos sean naturales y llenas de vida. Con las fotos en blanco y negro lo que os lleváis no caducará nunca: el aspecto cambia, pero la esencia de una persona permanece y se reconoce siempre. Vuestros hijos podrán mirar estas fotos de adultos y reconocerse, y también reconocer el amor con el que crecieron. Una foto con alma es una herencia.</p>
 
-        <details class="acordeon">
-          <summary>Mi manera de trabajar</summary>
-          <p>Trabajo con luz natural y en exteriores, sin poses forzadas ni prisas. Antes de la sesión hablamos para conocer a tu familia y elegir juntos el lugar y el momento del día. Durante el reportaje te voy guiando con calma para que los niños jueguen y todos disfrutéis, y yo me encargo de captar lo que va pasando. Después edito todas las fotos con mimo, en color y en blanco y negro, y te las entrego en una galería online privada.</p>
-        </details>
-
+        <!-- Enlace a la página de preguntas ¿Por qué blanco y negro? -->
+        <a class="avance-enlace" href="por-que-blanco-y-negro.html">
+          <span class="avance-mas">Leer más</span>
+        </a>
       </div>
       <div class="sobre-foto">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé apoyado sobre un coche de juguete granate con el número 01. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Mart%C3%ADn/Mart%C3%ADn%20(1).jpg" alt="Bebé apoyado sobre un coche de juguete granate con el número 01"></a>
+        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(4).JPG" alt="Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro"></a>
       </div>
     </section>
 
-
-    <!-- ===== APARTADOS DE LA PÁGINA: Reportajes familiares, Embarazo y Recién nacido.
-         Bloques de fotos como en la portada. CAMBIA los nombres de archivo y la descripción (alt).
-         Puedes mezclar los bloques: pantalla-dos, pantalla-tres, pantalla-ancha y foto-sola ===== -->
+    <!-- ===== APARTADOS DE LA PÁGINA: Familia, Embarazo y Recién nacido.
+         Cada apartado es una cuadrícula de filas de 3 fotos, cada una con su formato, como en la portada (class="cuadricula").
+         Las fotos cambian de sitio en cada recarga (fotos-aleatorias.js). Para tener más o menos filas, añade o quita fotos
+         en grupos de 3. Las reglas de cada apartado (tripa, recién nacido) están en la cabecera de fotos-aleatorias.js ===== -->
     <section class="apartado" id="reportajes-familiares" data-excluye="tripa">
-      <h2 class="apartado-titulo">Reportajes familiares</h2>
+      <h2 class="apartado-titulo">Familia</h2>
 
-      <div class="pantalla pantalla-tres">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé gateando sobre una alfombra de pelo mientras recibe un beso. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesion%201%20(1).jpg" alt="Bebé gateando sobre una alfombra de pelo mientras recibe un beso" loading="lazy"></a>
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(8).jpg" alt="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado" loading="lazy"></a>
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé tumbado sobre una manta granate mirando hacia arriba. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesion%201%20(2).jpg" alt="Bebé tumbado sobre una manta granate mirando hacia arriba" loading="lazy"></a>
-      </div>
-
-      <div class="foto-sola">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormido con un lazo blanco en un capazo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(2).jpg" alt="Bebé dormido con un lazo blanco en un capazo" loading="lazy"></a>
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:0.6667" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(2).JPG" alt="Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro"></a>
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido con el ceño fruncido, apoyado sobre un brazo, en un encuadre más cerrado. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(8).jpg" alt="Recién nacido con el ceño fruncido, apoyado sobre un brazo, en un encuadre más cerrado"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(14).jpg" alt="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre"></a>
+        </div>
+        <div class="fila">
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(19).jpg" alt="Pie de un recién nacido con calcetín blanco"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre con los ojos cerrados besa el pie de su recién nacido. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(24).jpg" alt="Una madre con los ojos cerrados besa el pie de su recién nacido"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pareja abrazada en el parque, ella apoyada en el pecho de él, que sonríe. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(2).jpg" alt="Pareja abrazada en el parque, ella apoyada en el pecho de él, que sonríe"></a>
+        </div>
       </div>
     </section>
 
     <section class="apartado" id="embarazo" data-tema="tripa">
       <h2 class="apartado-titulo">Embarazo</h2>
 
-      <div class="pantalla pantalla-dos">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de los padres sujetando a un bebé vestido de rosa. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(6).jpg" alt="Manos de los padres sujetando a un bebé vestido de rosa" loading="lazy"></a>
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con una diadema blanca tumbado sobre una colcha de patchwork. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(7).jpg" alt="Bebé con una diadema blanca tumbado sobre una colcha de patchwork" loading="lazy"></a>
-      </div>
-
-      <div class="pantalla pantalla-ancha">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesion%201%20(3).jpg" alt="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo" loading="lazy"></a>
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Embarazada con las manos sobre la tripa, con la sombra de una flor. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(36).jpg" alt="Embarazada con las manos sobre la tripa, con la sombra de una flor"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano con anillo sobre la tripa de una embarazada, con pantalón vaquero. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(39).jpg" alt="Mano con anillo sobre la tripa de una embarazada, con pantalón vaquero"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de una pareja sobre la tripa de una embarazada. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(8).jpg" alt="Manos de una pareja sobre la tripa de una embarazada"></a>
+        </div>
       </div>
     </section>
 
     <section class="apartado" id="recien-nacido" data-tema="rn">
       <h2 class="apartado-titulo">Recién nacido</h2>
 
-      <!-- Bloque de 5 fotos: dos arriba y tres abajo (dos filas seguidas). La foto del medio de abajo es siempre vertical (lleva el atributo de forma vertical); las demás, al azar -->
-      <div class="pantalla pantalla-dos">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre mira a su bebé, que mira a cámara con un lazo blanco, mientras el padre le sujeta la mano. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(9).jpg" alt="Una madre mira a su bebé, que mira a cámara con un lazo blanco, mientras el padre le sujeta la mano" loading="lazy"></a>
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Piececito de un bebé con calcetín blanco de encaje, sujeto por las manos de sus padres. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(11).jpg" alt="Piececito de un bebé con calcetín blanco de encaje, sujeto por las manos de sus padres" loading="lazy"></a>
-      </div>
-      <div class="pantalla pantalla-tres">
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé tumbado sobre una colcha de patchwork en blanco y negro, con los puños en alto. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(12).jpg" alt="Bebé tumbado sobre una colcha de patchwork en blanco y negro, con los puños en alto" loading="lazy"></a>
-        <a class="foto-enlace" data-forma="vertical" style="--r:0.6667" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%203/Familia%20y%20RN%20sesi%C3%B3n%203%20(13).jpg" alt="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en blanco y negro" loading="lazy"></a>
-        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormida con un lazo blanco, arropada en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(1).JPG" alt="Bebé dormida con un lazo blanco, arropada en blanco y negro" loading="lazy"></a>
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(4).jpg" alt="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara"></a>
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pies de un recién nacido sujetos por las manos de sus padres. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(7).jpg" alt="Pies de un recién nacido sujetos por las manos de sus padres"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en otro encuadre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(12).jpg" alt="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en otro encuadre"></a>
+        </div>
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido tumbado mirando hacia arriba, con una mano levantada. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(16).jpg" alt="Recién nacido tumbado mirando hacia arriba, con una mano levantada"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre besa la mejilla de su recién nacido, que mira a cámara. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(20).jpg" alt="Una madre besa la mejilla de su recién nacido, que mira a cámara"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con los deditos, junto a un calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(23).jpg" alt="Pie de un recién nacido con los deditos, junto a un calcetín blanco"></a>
+        </div>
       </div>
     </section>
 
@@ -126,9 +129,11 @@
 
 
     <section class="seccion otras-sesiones">
-      <p>Otros trabajos</p>
+      <p>Otros</p>
       <ul>
         <li><a href="analogicas.html">Fotos analógicas</a></li>
+        <li><a href="fotografia-de-autor.html">Fotografía de autor</a></li>
+        <li><a href="por-que-blanco-y-negro.html">¿Por qué blanco y negro?</a></li>
       </ul>
     </section>
 

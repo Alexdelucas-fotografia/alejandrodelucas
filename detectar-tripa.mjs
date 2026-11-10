@@ -10,6 +10,7 @@
 //   3. Si en la foto se ve la tripa, le pone tripa: true en la lista de fotos-aleatorias.js; si no, se lo quita.
 //      Ya no hay que marcarlo a mano. La norma esta explicada en la cabecera de fotos-aleatorias.js.
 //   4. Guarda lo que ha decidido en tripa-detectado.json, asi solo analiza las fotos nuevas (el resto no se repite).
+//      Probado con 45 fotos de embarazo: las que enseñan la tripa puntuan 0.89 o mas, y las demas 0.27 como maximo.
 //
 // La primera vez descarga el modelo (unos 300 MB) y sus herramientas en %LOCALAPPDATA%\mi-web-tripa
 // (fuera de la web y de OneDrive). Hace falta conexion a internet solo esa vez.
@@ -28,11 +29,16 @@ const CARRUSEL = path.join(RAIZ, 'fotos', 'carrusel');
 const CACHE = path.join(RAIZ, 'tripa-detectado.json');
 const HERRAMIENTAS = path.join(process.env.LOCALAPPDATA || os.homedir(), 'mi-web-tripa');
 
-const UMBRAL = 0.25;   // a partir de esta probabilidad se considera que se ve la tripa
-const ETIQUETAS = [    // la primera es la que buscamos; las otras sirven para contrastar
+const METODO = 'v2';    // si se cambian las etiquetas o el umbral, se cambia este nombre y se vuelven a analizar todas las fotos
+const UMBRAL = 0.5;     // a partir de esta probabilidad se considera que se ve la tripa
+const ETIQUETAS = [     // la primera es la que buscamos; las otras sirven para contrastar (retratos, abrazos, manos...)
   'a close-up photo of a pregnant belly',
   'a photo of a couple hugging or dancing',
   'a close-up of hands holding each other',
+  'a portrait of a smiling woman',
+  'a close-up of two faces close together',
+  'a photo of a couple kissing',
+  'a woman standing outdoors',
 ];
 
 // "Sesion familia y embarazo 4 (3).JPG" -> sin tildes y en minusculas, para buscar la palabra embarazo
@@ -50,7 +56,8 @@ lineas.forEach((l, i) => {
 });
 const candidatas = entradas.filter(e => plano(e.nombre).includes('embarazo'));
 
-const cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
+let cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
+if (cache._metodo !== METODO) cache = { _metodo: METODO };   // otro método: se vuelven a analizar todas las fotos
 const pendientes = candidatas.filter(e => !(e.nombre in cache) && fs.existsSync(path.join(CARRUSEL, e.nombre)));
 for (const e of candidatas) {
   if (!(e.nombre in cache) && !fs.existsSync(path.join(CARRUSEL, e.nombre))) {
@@ -85,6 +92,12 @@ if (pendientes.length) {
   }
   fs.writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n');
 }
+
+// las fotos que ya no están en la lista se quitan de la caché
+for (const k of Object.keys(cache)) {
+  if (k !== '_metodo' && !entradas.some(e => e.nombre === k)) delete cache[k];
+}
+fs.writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n');
 
 // --- 3. poner / quitar tripa: true en la lista ---
 let puestas = 0, quitadas = 0;

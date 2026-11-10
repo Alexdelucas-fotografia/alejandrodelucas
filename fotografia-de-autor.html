@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fotografía de autor · Alejandro de Lucas</title>
+  <meta name="description" content="Fotografía de autor de Alejandro de Lucas.">
+
+  <!-- Tipo de letra de los títulos: está en la carpeta fuentes/ (no se pide a Google). El texto usa Helvetica -->
+  <link rel="preload" href="fuentes/libre-baskerville-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Icono de la pestaña: la firma -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="icono-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="marco">
+
+  <!-- Cabecera: firma a la izquierda (siempre lleva al inicio) y apartado en el centro -->
+  <header class="marco-cabecera cabecera-interna">
+    <a class="firma" href="index.html" aria-label="Alejandro de Lucas, ir al inicio">
+      <img src="fotos/Portada/firma-oscura.png" alt="">
+    </a>
+    <p class="cabecera-seccion">Fotografía de autor</p>
+  </header>
+
+  <main>
+
+    <h1 class="solo-lectores">Fotografía de autor</h1>
+
+    <!-- ===== GALERÍA. Aquí salen solas, en grande y una a una, TODAS las fotos que lleven "autor" en el nombre del archivo
+         (por ejemplo "Autor (1).jpg"): ponla en fotos/web/Familia/, añade su línea a fotos-aleatorias.js y ejecuta crear-copias-ligeras.bat.
+         Mientras no haya ninguna, se ve el aviso "Próximamente" ===== -->
+    <section class="apartado" id="autor">
+      <div class="galeria-grande" data-galeria="autor">
+        <p class="galeria-vacia">Próximamente.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CONTACTO -->
+  <footer class="marco-contacto">
+    <a href="mailto:alejandrodelucascaldera@gmail.com">alejandrodelucascaldera@gmail.com</a>
+    <a href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer">@alexlucascaldera</a>
+    <a href="tel:+34722467468">+34 722 467 468</a>
+  </footer>
+
+  <script src="fotos-aleatorias.js"></script>
+
+    <nav class="enlaces-legales" aria-label="Información legal">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="cookies.html">Política de cookies</a>
+    </nav>
+
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d1ac068f640341fbb463d0f2d5d0233c"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

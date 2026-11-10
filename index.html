@@ -19,6 +19,19 @@
   <link rel="stylesheet" href="estilos.css">
 
   <script>
+    // INTRO: la primera vez que se abre la portada en una visita se ve una foto a pantalla completa con la firma.
+    // No sale si el visitante ya la vio en esta visita ni si tiene activada la opción de menos movimiento.
+    // Para cambiar la foto, cambia esta ruta (usa su copia ligera de fotos/carrusel/).
+    window.introFoto = 'fotos/carrusel/Sesi\u00f3n 3 Familia y RN autor (22).jpg';
+    try {
+      var forzar = /[?&]intro(=|&|$)/.test(location.search);   // abrir la portada con ?intro (por ejemplo http://localhost:8080/?intro) fuerza que salga la intro
+      if ((forzar || !sessionStorage.getItem('intro-vista')) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('con-intro');
+        new Image().src = encodeURI(window.introFoto);   // empieza a cargarla ya
+      }
+    } catch (e) {}
+  </script>
+  <script>
     // La portada siempre se abre desde arriba: al llegar desde la firma de otra página, al recargar
     // y al volver con la flecha del navegador (que si no, recordaría hasta dónde habías bajado).
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -27,43 +40,45 @@
 </head>
 <body class="zara">
 
+  <!-- INTRO (solo se ve la primera vez; ver estilos.css y script.js). La foto y la firma las pone script.js -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-fondo"><img class="intro-foto" alt=""></div>
+    <!-- la firma sale negra, fuera de la foto; al irse el fondo pasa a blanca (como la de la portada) -->
+    <div class="intro-firma">
+      <img class="intro-firma-negra" src="fotos/Portada/firma-oscura.png" alt="">
+      <img class="intro-firma-blanca" src="fotos/Portada/firma-blanca.png" alt="">
+    </div>
+  </div>
+
   <!-- Título de la página para buscadores y lectores de pantalla (no se ve) -->
   <h1 class="solo-lectores">Alejandro de Lucas, fotografía</h1>
 
-  <!-- ===== FOTOS DE FONDO, como en zara.es: 2 fotos, una alargada sin margen,
-         una sola foto con marco blanco y, al final, un bloque de 4.
-         CAMBIA los nombres de archivo y la descripción (alt) de cada foto ===== -->
+  <!-- ===== CUADRÍCULA DE FOTOS, como el perfil de Instagram: filas de 3 fotos, cada una con su formato, separadas por líneas blancas.
+         Las fotos cambian de sitio en cada recarga (fotos-aleatorias.js). Para tener más o menos filas,
+         añade o quita fotos en grupos de 3. El grosor de las líneas se cambia en estilos.css (--linea) ===== -->
   <main>
 
-    <!-- 2 fotos, una al lado de la otra, a pantalla completa -->
-    <div class="pantalla pantalla-dos">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé apoyado sobre un coche de juguete granate con el número 01. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Mart%C3%ADn/Mart%C3%ADn%20(1).jpg" alt="Bebé apoyado sobre un coche de juguete granate con el número 01"></a>
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormido con un lazo blanco en un capazo. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(2).jpg" alt="Bebé dormido con un lazo blanco en un capazo"></a>
-    </div>
-
-    <!-- Una foto alargada, de lado a lado y sin marcos -->
-    <div class="pantalla pantalla-ancha">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con una diadema blanca tumbado sobre una colcha de patchwork. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(7).jpg" alt="Bebé con una diadema blanca tumbado sobre una colcha de patchwork" loading="lazy"></a>
-    </div>
-
-    <!-- Una sola foto, con marco blanco alrededor -->
-    <div class="foto-sola zona-clara">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(8).jpg" alt="Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado" loading="lazy"></a>
-    </div>
-
-    <!-- Bloque de 2 fotos -->
-    <div class="pantalla pantalla-dos">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano de un bebé señalando el tapón de un coche de juguete granate. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Mart%C3%ADn/Mart%C3%ADn%20(2).jpg" alt="Mano de un bebé señalando el tapón de un coche de juguete granate" loading="lazy"></a>
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano de un bebé agarrada al asiento de un coche de juguete granate. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Mart%C3%ADn/Mart%C3%ADn%20(3).jpg" alt="Mano de un bebé agarrada al asiento de un coche de juguete granate" loading="lazy"></a>
-    </div>
-
-    <!-- Espacio en blanco entre los dos bloques (su altura es --marco-v, en estilos.css, igual que el resto de espacios blancos) -->
-    <div class="hueco-fila zona-clara" aria-hidden="true"></div>
-
-    <!-- Bloque de 2 fotos -->
-    <div class="pantalla pantalla-dos">
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de los padres sujetando a un bebé vestido de rosa. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(6).jpg" alt="Manos de los padres sujetando a un bebé vestido de rosa" loading="lazy"></a>
-      <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesion%201%20(3).jpg" alt="Bebé con camisa de cuadros tumbado sobre una alfombra de pelo" loading="lazy"></a>
+    <div class="cuadricula">
+      <div class="fila">
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(1).JPG" alt="Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormida con un lazo blanco, arropada en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(1).JPG" alt="Bebé dormida con un lazo blanco, arropada en blanco y negro"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido dormido, con la mano de su madre sobre su pecho. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(2).jpg" alt="Recién nacido dormido, con la mano de su madre sobre su pecho"></a>
+      </div>
+      <div class="fila">
+        <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Perfil de un recién nacido dormido con jersey de punto, con una mano a su lado. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(6).jpg" alt="Perfil de un recién nacido dormido con jersey de punto, con una mano a su lado"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de una pareja con anillos sobre la tripa de una embarazada. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(25).jpg" alt="Manos de una pareja con anillos sobre la tripa de una embarazada"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(14).jpg" alt="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre"></a>
+      </div>
+      <div class="fila">
+        <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(19).jpg" alt="Pie de un recién nacido con calcetín blanco"></a>
+        <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con los deditos, junto a un calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(23).jpg" alt="Pie de un recién nacido con los deditos, junto a un calcetín blanco"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido dormido junto a la mano de su madre, que lleva un anillo. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(27).jpg" alt="Recién nacido dormido junto a la mano de su madre, que lleva un anillo"></a>
+      </div>
+      <div class="fila">
+        <a class="foto-enlace" style="--r:0.6667" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pareja sonriéndose en el parque. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(43).jpg" alt="Pareja sonriéndose en el parque"></a>
+        <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(4).jpg" alt="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara"></a>
+        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido que mira hacia un lado mientras agarra el dedo de su madre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(17).jpg" alt="Recién nacido que mira hacia un lado mientras agarra el dedo de su madre"></a>
+      </div>
     </div>
 
     <!-- ===== FIRMA GRANDE. Acompaña mientras se ven las fotos y se queda en la última, al final.
@@ -77,11 +92,13 @@
   <!-- ===== ZONA CLARA DE ABAJO: los trabajos y el contacto ===== -->
   <div class="zara-claro">
 
-    <!-- Bloque dividido en dos mitades: cada mitad es un enlace a su página.
-         Familia a la izquierda y Fotos analógicas a la derecha. Solo texto grande, sin fotos. -->
+    <!-- Tres botones, uno debajo de otro y a todo el ancho, separados por líneas negras: cada uno es un enlace a su página.
+         Solo texto grande, sin fotos. Para cambiar el grosor de las líneas, mira --borde en estilos.css -->
     <section class="bloque-dividido">
-      <a class="bloque-mitad" href="familia.html">Familia</a>
+      <a class="bloque-mitad" href="familia.html">Reportajes familiares</a>
       <a class="bloque-mitad" href="analogicas.html">Fotos analógicas</a>
+      <a class="bloque-mitad" href="fotografia-de-autor.html">Fotografía de autor</a>
+      <a class="bloque-mitad" href="por-que-blanco-y-negro.html">¿Por qué blanco y negro?</a>
     </section>
 
     <!-- CONTACTO -->

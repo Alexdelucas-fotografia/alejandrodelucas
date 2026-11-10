@@ -3,22 +3,24 @@
 // Para añadir una foto nueva, ponla en fotos/web/Familia/ y añade una línea a la lista de abajo.
 //   f: el nombre del archivo, tal cual (con espacios y tildes si los tiene)
 //   alt: lo que se ve en la foto
-//   vertical: true si la foto es vertical 2:3 (solo se usa en huecos altos, para que no se recorte)
-//   bn: true si la foto es en blanco y negro (las demás se consideran de color)
-//   rn: true si la foto es de recién nacido: lleva " RN " en el nombre del archivo (solo esas fotos pueden ir en un apartado con data-tema="rn")
+//   r: la proporción de la foto (ancho / alto). NO lo escribas a mano: lo pone solo detectar-formato.mjs (se ejecuta al final de crear-copias-ligeras.bat).
+//     Formatos que admite la web, y que se ven enteros, sin recortar, en los bloques que no son cuadrados:
+//     3:2 (r: 1.5), 2:3 (r: 0.6667), 5:4 (r: 1.25) y 4:5 (r: 0.8). Las fotos con r menor que 1 son verticales.
+//   rn: true si la foto es de recién nacido: lleva " RN " en el nombre del archivo (solo esas fotos pueden ir en un apartado con data-tema="rn").
+//     Se deduce solo del nombre del archivo, no hace falta escribirlo.
+//   NORMA DE AUTOR: las fotos que llevan "autor" en el nombre del archivo (por ejemplo "Autor (1).jpg") van SOLO en la página Fotografía de autor,
+//     que las muestra todas, en grande y una a una, numeradas 001, 002... según el orden de la lista (las nuevas, al final). No salen en ninguna otra página ni en el carrusel. Se deduce solo del nombre; basta con añadir su línea a esta lista.
 //   tripa: true si en la foto se ve la tripa de la embarazada. NO lo escribas a mano: lo pone y lo quita solo detectar-tripa.mjs
 //     (se ejecuta al final de crear-copias-ligeras.bat) mirando las fotos que llevan "embarazo" en el nombre del archivo.
 //   NORMA DE LA TRIPA: las fotos con tripa: true solo pueden salir en el apartado Embarazo (data-tema="tripa")
 //   y nunca en Reportajes familiares (data-excluye="tripa"). En el resto de la web (portada, analógicas, carrusel) pueden salir.
 // Forma: un hueco con data-forma="vertical" (o "horizontal") en su <a class="foto-enlace"> solo recibe fotos verticales (u horizontales).
-// Tono: un apartado con data-tono="color" solo recibe fotos de color, y uno con data-tono="bn"
-// solo fotos en blanco y negro (en analogicas.html: <section class="apartado" data-tono="bn">).
-// Los huecos que no están dentro de un apartado con data-tono admiten cualquier foto.
+// Toda la web es en blanco y negro: no hay regla de tono, todas las fotos son en blanco y negro.
 // Tema: un apartado con data-tema="rn" solo recibe fotos con rn: true, y uno con data-tema="tripa" solo fotos con tripa: true
 // (en familia.html: "Recién nacido" y "Embarazo"). Las fotos con rn o tripa SÍ pueden salir en los apartados sin tema.
 // Excluir: un apartado con data-excluye="tripa" nunca recibe fotos con tripa: true (en familia.html: "Reportajes familiares").
-// Las fotos tienen que ser 3:2 (horizontales) o 2:3 (verticales) y pesar menos de 1 MB.
-// El carrusel del pie de página lleva TODAS las fotos de esta lista (mezcladas en cada recarga) y las recorta a cuadrado.
+// Las fotos tienen que ser 3:2, 2:3, 5:4 o 4:5 y pesar menos de 1 MB. Se ven siempre enteras, sin recortar, con su formato.
+// El carrusel del pie de página lleva TODAS las fotos de esta lista (mezcladas en cada recarga), todas con la misma altura y cada una con su formato.
 // Usa las copias ligeras de fotos/carrusel/ (mismo nombre que el original). Al añadir una foto nueva a la lista, pon también su copia ligera ahí.
 // No sigue la regla de no repetir: es la galería completa, así que las fotos de los bloques también salen en él.
 // Se sortean TODAS las fotos de la página, también la de presentación (la de al lado de tu texto).
@@ -32,80 +34,129 @@
   var carpetaCarrusel = 'fotos/carrusel/';   // copias ligeras (1200 px) de todas las fotos, solo para el carrusel
 
   var fotos = [
-    { f: 'Sesión 1/Familia sesion 1 (1).jpg', alt: 'Bebé gateando sobre una alfombra de pelo mientras recibe un beso' },
-    { f: 'Sesión 1/Familia sesion 1 (2).jpg', alt: 'Bebé tumbado sobre una manta granate mirando hacia arriba' },
-    { f: 'Sesión 1/Familia sesion 1 (3).jpg', alt: 'Bebé con camisa de cuadros tumbado sobre una alfombra de pelo' },
-    { f: 'Sesión 1/Familia sesion 1 (4).JPG', alt: 'Dos niños con los brazos en alto juegan con hojas secas en un parque' },
-    { f: 'Sesión 1/Familia sesion 1 (5).jpg', vertical: true, alt: 'Una madre tumbada sonríe a su hija, que se inclina sobre ella a contraluz en un parque' },
-    { f: 'Sesión 1/Familia sesion 1 (6).JPG', vertical: true, alt: 'Una niña recoge manzanas de un cubo de madera sobre la hierba' },
-    { f: 'Sesión 1/Familia sesion 1 (7).JPG', bn: true, alt: 'Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro' },
-    { f: 'Sesión 1/Familia sesion 1 (8).JPG', vertical: true, alt: 'Un niño sonriente con camisa de rayas corre con una manzana en la mano' },
-    { f: 'Sesión 1/Familia sesion 1 (9).JPG', vertical: true, bn: true, alt: 'Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro' },
-    { f: 'Sesión 1/Familia sesion 1 (10).JPG', bn: true, alt: 'Bebé tumbado sobre una alfombra de pelo con camisa de cuadros, mirando hacia un lado, en blanco y negro' },
-    { f: 'Sesión 1/Familia sesion 1 (11).JPG', bn: true, alt: 'Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro' },
-    { f: 'Sesión 1/Familia sesion 1 (12).JPG', vertical: true, alt: 'Los padres y dos hermanos besan a un bebé con peto de cuadros, rodeado de manzanas' },
-    { f: 'Sesión 2/Familia sesión 2 (1).JPG', bn: true, alt: 'Bebé dormida con un lazo blanco, arropada en blanco y negro' },
-    { f: 'Sesión 2/Familia sesión 2 (2).jpg', alt: 'Bebé dormido con un lazo blanco en un capazo' },
-    { f: 'Sesión 2/Familia sesión 2 (3).jpg', vertical: true, alt: 'Una madre con camisa de cuadros mira a su bebé dormido en brazos' },
-    { f: 'Sesión 2/Familia sesión 2 (4).JPG', alt: 'Una madre sonríe mientras mira a su bebé con un lazo blanco' },
-    { f: 'Sesión 2/Familia sesión 2 (5).jpg', vertical: true, alt: 'Un padre mira con ternura a su bebé, que sonríe en sus brazos con un lazo blanco' },
-    { f: 'Sesión 2/Familia sesión 2 (6).jpg', alt: 'Manos de los padres sujetando a un bebé vestido de rosa' },
-    { f: 'Sesión 2/Familia sesión 2 (7).jpg', alt: 'Bebé con una diadema blanca tumbado sobre una colcha de patchwork' },
-    { f: 'Sesión 2/Familia sesión 2 (8).jpg', alt: 'Bebé sonriendo sobre una colcha de patchwork, con la mano de su padre al lado' },
-    { f: 'Sesión 2/Familia sesión 2 (9).jpg', alt: 'Una madre mira a su bebé, que mira a cámara con un lazo blanco, mientras el padre le sujeta la mano' },
-    { f: 'Sesión 2/Familia sesión 2 (10).jpg', vertical: true, bn: true, alt: 'Retrato en blanco y negro de un bebé sonriente con un lazo blanco' },
-    { f: 'Sesión 2/Familia sesión 2 (11).jpg', alt: 'Piececito de un bebé con calcetín blanco de encaje, sujeto por las manos de sus padres' },
-    { f: 'Sesión 2/Familia sesión 2 (12).jpg', bn: true, alt: 'Bebé tumbado sobre una colcha de patchwork en blanco y negro, con los puños en alto' },
-    { f: 'Sesión 2/Familia sesión 2 (13).jpg', alt: 'Una madre besa en la frente a su bebé dormido, en brazos del padre' },
-    { f: 'Sesión 2/Familia sesión 2 (14).jpg', alt: 'Un abuelo mira con cariño a su nieta dormida en sus brazos' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (1).jpg', rn: true, alt: 'Manos de una madre sujetando la manita de un recién nacido con jersey de punto' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (2).jpg', rn: true, alt: 'Recién nacido dormido en brazos de su madre, con la mano de ella junto a su cara' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (3).jpg', rn: true, alt: 'Recién nacido dormido junto a una ventana, en brazos de su madre' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (4).jpg', rn: true, alt: 'Recién nacido dormido junto al pecho de su madre, que lo sujeta con la mano' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (5).jpg', rn: true, alt: 'Recién nacido dormido con un jersey de punto, mirando hacia un lado' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (6).jpg', rn: true, vertical: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (7).jpg', rn: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (8).jpg', rn: true, bn: true, alt: 'Recién nacido dormido junto al pecho de su madre, que lo sujeta con la mano, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (9).jpg', rn: true, bn: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (10).jpg', rn: true, bn: true, alt: 'Recién nacido dormido en brazos de su madre, con la mano de ella junto a su cara, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (11).jpg', rn: true, bn: true, alt: 'Recién nacido dormido junto a una ventana, en brazos de su madre, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (12).jpg', rn: true, bn: true, alt: 'Recién nacido dormido con un jersey de punto, mirando hacia un lado, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (13).jpg', rn: true, vertical: true, bn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en blanco y negro' },
-    { f: 'Sesión 3/Familia y RN sesión 3 (14).jpg', rn: true, bn: true, alt: 'Manos de una madre sujetando la manita de un recién nacido con jersey de punto, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (1).JPG', tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (2).jpg', tripa: true, bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada sentada en la hierba, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (3).JPG', alt: 'Pareja abrazada en el parque al atardecer, con ella de ojos entrecerrados' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (4).jpg', bn: true, alt: 'Pareja abrazada en el parque, con ella de ojos entrecerrados, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (5).jpg', bn: true, alt: 'Pareja abrazada en el parque mientras él le besa la frente, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (6).JPG', tripa: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor proyectada en ella' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (7).JPG', alt: 'Pareja en el parque: él le da un beso en la mejilla mientras ella mira a la cámara' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (8).JPG', alt: 'Pareja besándose a contraluz al atardecer en el parque' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (9).jpg', bn: true, alt: 'Pareja besándose a contraluz en el parque, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (10).JPG', alt: 'Pareja sonriéndose frente a frente en el parque, él con camisa vaquera' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (11).JPG', tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (12).jpg', tripa: true, bn: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, con anillos, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (13).JPG', tripa: true, alt: 'Embarazada sentada en la hierba al atardecer, con las manos sobre la tripa' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (14).jpg', tripa: true, bn: true, alt: 'Embarazada sentada en la hierba, con las manos sobre la tripa, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (15).jpg', bn: true, alt: 'Pareja abrazada en el parque, él sonriendo con la cabeza apoyada en la de ella, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (16).JPG', alt: 'Manos entrelazadas de la pareja a contraluz' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (17).jpg', bn: true, alt: 'Manos entrelazadas de la pareja a contraluz, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (18).JPG', alt: 'Pareja abrazada y sonriendo en el parque al atardecer, entre árboles de otoño' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (19).JPG', alt: 'Pareja bailando abrazada entre árboles de otoño, a contraluz' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (20).jpg', bn: true, alt: 'Pareja bailando abrazada entre árboles de otoño, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (21).JPG', alt: 'Pareja bailando y girando en el parque al atardecer, con el pelo de ella al vuelo' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (22).jpg', bn: true, alt: 'Pareja bailando y girando en el parque, con el pelo de ella al vuelo, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (23).jpg', tripa: true, bn: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (24).JPG', tripa: true, alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (25).jpg', tripa: true, bn: true, alt: 'Manos de la pareja formando un corazón sobre la tripa de la embarazada, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (26).JPG', vertical: true, alt: 'Pareja sonriendo con las manos juntas, ella riendo con la cara hacia arriba' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (27).jpg', vertical: true, bn: true, alt: 'Pareja sonriendo con las manos juntas, ella riendo con la cara hacia arriba, en blanco y negro' },
-    { f: 'Sesión 4/Sesion familia y embarazo 4 (28).JPG', alt: 'Pareja abrazada en el parque al atardecer, él sonriendo con la cabeza junto a la de ella' },
-    { f: 'Martín/Martín (1).jpg', vertical: true, alt: 'Bebé apoyado sobre un coche de juguete granate con el número 01' },
-    { f: 'Martín/Martín (2).jpg', alt: 'Mano de un bebé señalando el tapón de un coche de juguete granate' },
-    { f: 'Martín/Martín (3).jpg', alt: 'Mano de un bebé agarrada al asiento de un coche de juguete granate' }
+    { f: 'Sesión 1/Familia sesión 1 (1).JPG', r: 1.5, alt: 'Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro' },
+    { f: 'Sesión 1/Familia sesión 1 (2).JPG', r: 0.6667, alt: 'Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro' },
+    { f: 'Sesión 1/Familia sesión 1 (3).JPG', r: 1.5, alt: 'Bebé tumbado sobre una alfombra de pelo con camisa de cuadros, mirando hacia un lado, en blanco y negro' },
+    { f: 'Sesión 1/Familia sesión 1 (4).JPG', r: 1.5, alt: 'Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro' },
+    { f: 'Sesión 2/Familia sesión 2 (1).JPG', r: 1.5, alt: 'Bebé dormida con un lazo blanco, arropada en blanco y negro' },
+    { f: 'Sesión 2/Familia sesión 2 (2).jpg', r: 0.6667, alt: 'Retrato en blanco y negro de un bebé sonriente con un lazo blanco' },
+    { f: 'Sesión 2/Familia sesión 2 (3).jpg', r: 1.5, alt: 'Bebé tumbado sobre una colcha de patchwork en blanco y negro, con los puños en alto' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (1).jpg', r: 1.5, rn: true, alt: 'Recién nacido dormido con jersey de punto, con la mano de su madre junto a su cara' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (2).jpg', r: 1.5, rn: true, alt: 'Recién nacido dormido, con la mano de su madre sobre su pecho' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (3).jpg', r: 1.5, rn: true, alt: 'Recién nacido dormido, con la manga de un jersey de punto junto a su cara' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (4).jpg', r: 1.25, rn: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (5).jpg', r: 1.5, rn: true, alt: 'Manita de un recién nacido con jersey de punto, sobre un dedo' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (6).jpg', r: 1.25, rn: true, alt: 'Perfil de un recién nacido dormido con jersey de punto, con una mano a su lado' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (7).jpg', r: 1.25, rn: true, alt: 'Pies de un recién nacido sujetos por las manos de sus padres' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (8).jpg', r: 1.25, rn: true, alt: 'Recién nacido con el ceño fruncido, apoyado sobre un brazo, en un encuadre más cerrado' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (9).jpg', r: 1.25, rn: true, alt: 'Manos de una madre con anillo sobre la manita de un recién nacido' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (11).jpg', r: 0.8, rn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (12).jpg', r: 0.8, rn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en otro encuadre' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (13).jpg', r: 0.8, rn: true, alt: 'Perfil de la nariz y la mejilla de un recién nacido' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (14).jpg', r: 1.5, rn: true, alt: 'Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (15).jpg', r: 0.8, rn: true, alt: 'Manita de un recién nacido agarrada a un dedo, con su cara desenfocada al fondo' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (16).jpg', r: 1.25, rn: true, alt: 'Recién nacido tumbado mirando hacia arriba, con una mano levantada' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (17).jpg', r: 1.5, rn: true, alt: 'Recién nacido que mira hacia un lado mientras agarra el dedo de su madre' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (18).jpg', r: 0.8, rn: true, alt: 'Una madre besa a su recién nacido, con la manita del bebé en primer plano' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (19).jpg', r: 0.8, rn: true, alt: 'Pie de un recién nacido con calcetín blanco' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (20).jpg', r: 0.8, rn: true, alt: 'Una madre besa la mejilla de su recién nacido, que mira a cámara' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (21).jpg', r: 0.8, rn: true, alt: 'Mano de un adulto sobre la cabeza de un recién nacido con el pelo oscuro' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (23).jpg', r: 0.8, rn: true, alt: 'Pie de un recién nacido con los deditos, junto a un calcetín blanco' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (24).jpg', r: 0.8, rn: true, alt: 'Una madre con los ojos cerrados besa el pie de su recién nacido' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (25).jpg', r: 0.8, rn: true, alt: 'Manita de un recién nacido sobre la mano de un adulto' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (26).jpg', r: 0.8, rn: true, alt: 'Detalle de la manita de un recién nacido junto a su boca' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (27).jpg', r: 1.5, rn: true, alt: 'Recién nacido dormido junto a la mano de su madre, que lleva un anillo' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (1).jpg', r: 1.5, alt: 'Pareja a punto de besarse en el parque a contraluz, él con camisa vaquera' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (2).jpg', r: 1.5, alt: 'Pareja abrazada en el parque, ella apoyada en el pecho de él, que sonríe' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (3).jpg', r: 1.5, alt: 'Un hombre besa la frente de su pareja, que sonríe con los ojos cerrados' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (4).jpg', r: 1.25, alt: 'Un hombre sonríe con la mirada baja junto a su pareja, en el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (5).jpg', r: 0.8, tripa: true, alt: 'Embarazada sentada en el regazo de su pareja, con la mano sobre la tripa' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (6).jpg', r: 1.25, alt: 'Pareja frente a frente en el parque, él sujetándole la nuca mientras ella sonríe' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (7).jpg', r: 1.25, alt: 'Pareja sonriéndose en el parque, ella mirando hacia arriba' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (8).jpg', r: 1.5, tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (9).jpg', r: 1.25, tripa: true, alt: 'Embarazada sentada en la hierba, con las manos sobre la tripa' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (10).jpg', r: 0.8, alt: 'Pareja frente a frente en el parque, él con camisa oscura y ella con chaqueta vaquera' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (11).jpg', r: 0.6667, alt: 'Pareja con las frentes juntas, ella sonriendo con unos pendientes grandes' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (12).jpg', r: 0.8, alt: 'Primer plano de una mujer riendo con la cara hacia arriba y las manos entrelazadas' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (13).jpg', r: 0.8, alt: 'Pareja con las frentes juntas y las manos entrelazadas, en primer plano' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (14).JPG', r: 0.8, tripa: true, alt: 'Embarazada mirándose la tripa mientras su pareja la abraza por detrás' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (15).jpg', r: 0.8, tripa: true, alt: 'Un hombre besa la tripa de una embarazada' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (16).jpg', r: 0.8, alt: 'Pareja con las palmas de las manos juntas en el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (17).jpg', r: 1.25, tripa: true, alt: 'Manos de una pareja con un pequeño peluche sobre la tripa de una embarazada' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (18).jpg', r: 1.25, tripa: true, alt: 'Manos colocando unos calcetines de bebé con la frase I love mum sobre la tripa de una embarazada' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (19).jpg', r: 1.25, alt: 'Mujer con los brazos abiertos mirando hacia arriba en el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (20).jpg', r: 1.25, tripa: true, alt: 'Embarazada sentada en la hierba con la mano sobre la tripa' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (22).jpg', r: 0.8, alt: 'Pareja abrazada con las frentes juntas, ella sonriendo con los ojos cerrados' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (23).jpg', r: 1.5, alt: 'Pareja bailando y girando en el parque, con el pelo de ella al vuelo' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (24).jpg', r: 0.8, alt: 'Un hombre besa la mejilla de su pareja, que mira hacia un lado' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (25).jpg', r: 1.25, tripa: true, alt: 'Manos de una pareja con anillos sobre la tripa de una embarazada' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (26).jpg', r: 0.8, alt: 'Pareja frente a frente en el parque, a punto de besarse, en un plano cercano' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (27).jpg', r: 0.8, alt: 'Pareja abrazada en el parque, ella riendo con los ojos cerrados' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (28).jpg', r: 0.8, alt: 'Pareja con las frentes juntas, ella sonriendo y mirándole' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (29).jpg', r: 0.8, alt: 'Manos de una pareja entrelazadas a contraluz' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (30).jpg', r: 1.25, alt: 'Manos de una pareja con anillos sobre la camisa de él' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (31).jpg', r: 1.25, alt: 'Manos de una pareja entrelazadas junto al cuello de ella' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (32).jpg', r: 1.25, alt: 'Manos de una pareja en el parque, desenfocadas' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (33).jpg', r: 1.25, alt: 'Silueta de una pareja bailando abrazada a contraluz' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (34).jpg', r: 0.8, alt: 'Mujer embarazada sonriendo a cámara mientras su pareja la lleva de la mano en el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (35).jpg', r: 1.25, alt: 'Pareja riendo y bailando en el parque, ella con la cara hacia arriba y él con el brazo en alto' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (36).jpg', r: 0.8, tripa: true, alt: 'Embarazada con las manos sobre la tripa, con la sombra de una flor' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (37).jpg', r: 1.25, tripa: true, alt: 'Manos de una pareja sobre la tripa de una embarazada, en un plano cercano' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (38).jpg', r: 0.8, alt: 'Pareja cogida de la mano caminando por el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (39).jpg', r: 1.25, tripa: true, alt: 'Mano con anillo sobre la tripa de una embarazada, con pantalón vaquero' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (40).jpg', r: 1.25, tripa: true, alt: 'Un hombre besa la tripa de una embarazada, vista de lado' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (41).jpg', r: 1.25, alt: 'Manos de una pareja con anillos entrelazadas, con la sonrisa de él al fondo' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (43).jpg', r: 0.6667, alt: 'Pareja sonriéndose en el parque' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (44).jpg', r: 1.5, alt: 'Manos de una pareja con anillos entrelazadas' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo (45).jpg', r: 0.8, tripa: true, alt: 'Manos sobre la tripa de una embarazada, con un anillo' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN (10).jpg', r: 0.8, alt: 'Manos de una madre con anillo sobre los deditos de un recién nacido' },
+    { f: 'Sesión 3/Sesión 3 Familia y RN autor (22).jpg', r: 0.8, alt: 'Detalle del ojo de un recién nacido' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo autor(21).JPG', r: 0.8, alt: 'Detalle de las manos de una pareja entrelazadas' },
+    { f: 'Sesión 4/Sesión 4 familia y embarazo autor(42).jpg', r: 0.8, alt: 'Mano con anillo de una mujer apoyada sobre su pierna' }
   ];
 
-  // carrusel del pie: una foto cuadrada por cada foto de la lista, en orden aleatorio
+  // una foto es vertical si es más alta que ancha (r < 1); si falta r, se supone 3:2
+  fotos.forEach(function (f) {
+    if (!f.r) f.r = 1.5;
+    f.vertical = f.r < 1;
+    var nombre = f.f.split('/').pop();
+    if (/ RN /.test(nombre)) f.rn = true;                                                    // recién nacido: se deduce del nombre
+    if (/autor/i.test(nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))) f.autor = true;   // fotografía de autor: se deduce del nombre
+  });
+
+  // las fotos de autor solo van en su página; el resto de la web (bloques y carrusel) usa las demás
+  var fotosAutor = fotos.filter(function (f) { return f.autor; });
+  fotos = fotos.filter(function (f) { return !f.autor; });
+
+  // página Fotografía de autor: todas las fotos de autor, en grande y una a una, cada una con su formato
+  // y su número debajo (001, 002, 003...). El número sigue el orden de la lista: la foto que se añade al final de la lista es la siguiente.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-galeria="autor"]'), function (galeria) {
+    if (!fotosAutor.length) return;   // sin fotos se queda el aviso "Próximamente"
+    galeria.innerHTML = '';
+    fotosAutor.forEach(function (f, i) {
+      var figura = document.createElement('figure');
+      figura.className = 'foto-autor';
+      figura.style.setProperty('--r', String(f.r));
+      var enlace = document.createElement('a');
+      enlace.className = 'foto-enlace';
+      enlace.href = 'https://www.instagram.com/alexlucascaldera';
+      enlace.target = '_blank';
+      enlace.rel = 'noopener noreferrer';
+      enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
+      var foto = document.createElement('img');
+      foto.src = encodeURI(carpeta + f.f);
+      foto.alt = f.alt;
+      if (i > 0) foto.loading = 'lazy';   // la primera se carga ya; las demás, al irse acercando
+      enlace.appendChild(foto);
+      var numero = document.createElement('figcaption');
+      numero.textContent = String(i + 1).padStart(3, '0');
+      figura.appendChild(enlace);
+      figura.appendChild(numero);
+      galeria.appendChild(figura);
+    });
+  });
+
+  // carrusel del pie: una foto por cada foto de la lista, en orden aleatorio
   var ordenCarrusel = fotos.slice().sort(function () { return Math.random() - 0.5; });
   Array.prototype.forEach.call(document.querySelectorAll('.carrusel-pista'), function (pista) {
     pista.innerHTML = '';
@@ -116,6 +167,7 @@
       enlace.target = '_blank';
       enlace.rel = 'noopener noreferrer';
       enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
+      enlace.style.setProperty('--r', String(f.r));   // el carrusel también respeta el formato de cada foto
       var foto = document.createElement('img');
       foto.src = encodeURI(carpetaCarrusel + f.f.split('/').pop());   // copia ligera, mismo nombre de archivo
       foto.alt = f.alt;
@@ -127,20 +179,14 @@
 
   // los huecos de fotos: bloques, foto sola y foto de presentación (menos las marcadas con data-fija)
   var huecos = Array.prototype.filter.call(
-    document.querySelectorAll('.pantalla img, .foto-sola img, .sobre-foto img'),
-    function (img) { return !img.hasAttribute('data-fija'); }
+    document.querySelectorAll('.pantalla img, .foto-sola img, .sobre-foto img, .cuadricula img'),
+    function (img) { return !img.hasAttribute('data-fija') && !img.closest('[data-galeria]'); }
   );
   if (!huecos.length) return;
 
   // las fotos verticales solo van en huecos altos (donde la foto no queda como una tira estrecha)
   function esHuecoAlto(img) {
     return !img.closest('.pantalla-ancha');
-  }
-
-  // el tono que pide el apartado donde está el hueco: 'color', 'bn' o null (cualquiera)
-  function tonoDe(img) {
-    var apartado = img.closest('[data-tono]');
-    return apartado ? apartado.getAttribute('data-tono') : null;
   }
 
   // el tema que pide el apartado donde está el hueco: 'rn', 'tripa' o null (cualquiera)
@@ -171,9 +217,6 @@
     if (tema === 'rn' && !f.rn) return false;                 // "Recién nacido": solo fotos con RN en el nombre
     if (tema === 'tripa' && !f.tripa) return false;           // "Embarazo": solo fotos donde se ve la tripa
     if (excluyeDe(img) === 'tripa' && f.tripa) return false;  // "Reportajes familiares": nunca fotos con la tripa
-    var tono = tonoDe(img);
-    if (tono === 'bn') return !!f.bn;                    // blanco y negro: solo fotos en blanco y negro
-    if (tono === 'color') return !f.bn;                  // color: solo fotos de color
     return true;
   }
 
@@ -208,8 +251,8 @@
     var enlace = img.closest('a');
     if (enlace) {
       enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
-      // proporción de la foto: 3:2 si es horizontal y 2:3 si es vertical; el CSS la usa para no recortar
-      enlace.style.setProperty('--r', f.vertical ? '0.6667' : '1.5');
+      // proporción de la foto (3:2, 2:3, 5:4 o 4:5); el CSS la usa para mostrarla entera, sin recortar
+      enlace.style.setProperty('--r', String(f.r));
     }
   });
 })();
