@@ -19,10 +19,11 @@ param([switch]$Todo)
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
-$raiz    = $PSScriptRoot
+$aqui    = $PSScriptRoot                    # la carpeta scripts\
+$raiz    = Split-Path $aqui -Parent         # la raíz del proyecto
 $origen  = Join-Path $raiz 'fotos\web\Familia'
 $destino = Join-Path $raiz 'fotos\carrusel'
-$lista   = Join-Path $raiz 'fotos-aleatorias.js'
+$lista   = Join-Path $aqui 'fotos-aleatorias.js'
 $largo   = 1200
 $calidad = 82
 
@@ -110,8 +111,8 @@ if ($avisos -eq 0) { Write-Host 'Todo en orden: cada foto tiene su copia y esta 
 # --- deteccion automatica del formato de cada foto (ver detectar-formato.mjs) y de las fotos donde se ve la tripa (ver detectar-tripa.mjs) ---
 Write-Host ''
 if (Get-Command node -ErrorAction SilentlyContinue) {
-  & node (Join-Path $raiz 'detectar-formato.mjs')
-  & node (Join-Path $raiz 'detectar-tripa.mjs')
+  & node (Join-Path $aqui 'detectar-formato.mjs')
+  & node (Join-Path $aqui 'detectar-tripa.mjs')
   if ($LASTEXITCODE -ne 0) { Write-Host 'AVISO: no se ha podido detectar la tripa (mira el mensaje de arriba). Las marcas de la lista no se han cambiado.' -ForegroundColor Yellow }
 } else {
   Write-Host 'AVISO: no encuentro Node.js, asi que no se detectan las fotos con tripa. Instalalo desde nodejs.org.' -ForegroundColor Yellow

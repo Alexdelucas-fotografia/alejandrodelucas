@@ -16,9 +16,10 @@
    Cambia estos valores y cambia toda la web a la vez.
    ========================================================= */
 :root {
-  /* Paleta: la web no tiene ningún color, solo blanco, negro y grises */
+  /* Paleta: blanco, negro y grises, y un único color: el rojo de la línea de la frase destacada, de los números de las fotos de autor, del punto del menú y de la flecha de volver arriba */
   --blanco: #FFFFFF;
   --negro: #000000;
+  --rojo: #C62828;                     /* el único color de la web: la línea de la frase destacada de la página de preguntas, los números de las fotos de autor, el punto del menú y la flecha de volver arriba */
   --gris-suave: #D9D9D9;
 
   /* Cómo se usa la paleta en la web */
@@ -30,6 +31,8 @@
   --fondo-boton: var(--gris-suave);    /* fondo de los botones (con línea y texto negros) */
   --categoria: var(--texto-suave);     /* localización y categoría */
   --marco-v: clamp(2rem, 8vw, 6rem);   /* espacio blanco entre bloques de la portada: arriba y abajo de la foto sola y el hueco entre bloques */
+  --boton-ancho: 16rem;                /* ancho de TODOS los botones (Cuéntame tu idea y los de Otros) */
+  --boton-alto: 3.25rem;               /* alto de TODOS los botones */
   --radio-boton: 4px;                  /* esquinas de los botones: casi cuadradas, con las puntas un poco redondeadas (0 = totalmente cuadradas) */
 
   --letra-titulos: "Libre Baskerville", serif;
@@ -99,8 +102,16 @@ h2 {
 }
 
 .boton {
-  display: inline-block;
-  padding: 0.85rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--boton-ancho);
+  max-width: 100%;
+  height: var(--boton-alto);
+  padding: 0 1rem;
+  text-align: center;
+  line-height: 1.2;
   border: 2px solid var(--texto);
   border-radius: var(--radio-boton);
   background: var(--fondo-bloque);
@@ -140,8 +151,16 @@ h2 {
 }
 
 .otras-sesiones a {
-  display: inline-block;
-  padding: 0.6rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--boton-ancho);
+  max-width: 100%;
+  height: var(--boton-alto);
+  padding: 0 1rem;
+  text-align: center;
+  line-height: 1.2;
   border: 2px solid var(--texto);
   border-radius: var(--radio-boton);
   background: var(--fondo-boton);
@@ -376,7 +395,6 @@ h2 {
   flex-direction: column;
   gap: 0.5rem;
   width: calc(var(--alto) * 0.76);     /* ancho de la firma (su proporción es 638 x 839) */
-  color: #FFFFFF;
   text-decoration: none;
 }
 
@@ -392,14 +410,6 @@ h2 {
 /* Zona clara de abajo: Familia | Fotos analógicas y contacto. La firma ya no llega hasta aquí: acaba en la última foto */
 .zara-claro {
   background: var(--fondo);
-}
-
-.firma-grande.firma-oscura {
-  color: var(--texto);
-}
-
-.firma-grande.firma-oscura img {
-  filter: invert(1);
 }
 
 /* =========================================================
@@ -467,13 +477,13 @@ h2 {
   display: block;
 }
 
-/* el número de cada foto (001, 002...), debajo y alineado con su borde izquierdo */
+/* el número de cada foto (001, 002...), en rojo, debajo y alineado con su borde izquierdo */
 .foto-autor figcaption {
   margin-top: 0.75rem;
   font-family: var(--letra-titulos);
   font-size: 0.9rem;
   letter-spacing: 0.2em;
-  color: var(--texto-suave);
+  color: var(--rojo);
 }
 
 .foto-autor img {
@@ -492,8 +502,14 @@ h2 {
   color: var(--texto-suave);
 }
 
-/* En el móvil la portada se ve de una en una: cada foto a todo el ancho, una debajo de otra, con su formato */
+/* En el móvil la portada lleva solo 5 fotos, de una en una (cada una a todo el ancho y con su formato), y después el menú.
+   Se ocultan las filas a partir de la 3.ª y la 3.ª foto de la 2.ª fila (3 + 2 = 5). Para otra cantidad, cambia estos dos selectores */
 @media (max-width: 45rem) {
+  .zara .cuadricula .fila:nth-child(n + 3),
+  .zara .cuadricula .fila:nth-child(2) > .foto-enlace:nth-child(n + 3) {
+    display: none;
+  }
+
   .zara .cuadricula .fila {
     flex-direction: column;
   }
@@ -515,8 +531,8 @@ h2 {
 /* =========================================================
    INTRO DE LA PORTADA
    La primera vez que se abre la portada (una vez por visita): pantalla blanca con una foto entera, con su
-   formato, y la firma negra fuera de la foto, en la esquina inferior derecha. Después se va el fondo, la firma se
-   queda en esa esquina (pasando a blanca para verse sobre las fotos) y queda la portada.
+   formato, y la firma negra fuera de la foto, en la esquina inferior derecha. Después se va el fondo, la firma se queda en esa
+   esquina (pasando a blanca para verse sobre las fotos) y queda la portada.
    Se controla desde script.js; la foto se cambia en el <script> del <head> de index.html.
    ========================================================= */
 #intro {
@@ -841,9 +857,10 @@ h2 {
 }
 
 .bloque-mitad {
-  display: grid;
+  display: flex;
   align-items: center;                   /* centrado en vertical */
-  justify-items: start;                  /* pegado a la izquierda, como el índice de un libro */
+  justify-content: flex-start;           /* pegado a la izquierda, como el índice de un libro */
+  gap: 0.9rem;                           /* espacio entre el punto rojo y el texto */
   min-height: clamp(3.5rem, 7vw, 5.5rem);   /* alto de cada botón */
   padding: 0.5rem var(--margen);         /* el mismo margen izquierdo que el resto de la web */
   background: var(--fondo-bloque);
@@ -854,6 +871,16 @@ h2 {
   text-align: left;
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* el punto rojo que va delante de cada entrada del menú */
+.bloque-mitad::before {
+  content: "";
+  flex: none;
+  width: 0.3rem;                         /* tamaño del punto: pequeño y fino */
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--rojo);
 }
 
 /* las líneas negras que separan los botones */
@@ -916,11 +943,11 @@ h2 {
   margin-top: 1.25rem;
 }
 
-/* Idea destacada (la de Ted Grant): letra grande, con una línea negra a la izquierda */
+/* Frase destacada: letra grande, en negro, con una línea roja a la izquierda */
 .cita {
   margin: 2.25rem 0;
   padding: 0.25rem 0 0.25rem 1.5rem;
-  border-left: 3px solid var(--negro);
+  border-left: 3px solid var(--rojo);    /* la línea de la izquierda, en rojo */
 }
 
 .cita p {
@@ -969,6 +996,52 @@ h2 {
 }
 
 .avance-enlace:focus-visible {
+  outline: 2px solid var(--primario);
+  outline-offset: 6px;
+}
+
+/* Flecha roja y fina para volver al principio (páginas Fotografía de autor y ¿Por qué blanco y negro?): va al acabar el contenido, centrada */
+.subir {
+  display: block;
+  align-self: center;                    /* centrada */
+  width: 1.6rem;
+  margin: 3.5rem auto calc(3.5rem - clamp(1rem, 2.5vw, 1.75rem));   /* centrada entre el final del texto y el principio de los datos de contacto (al pie le quedan 1,75 rem de relleno) */
+  color: var(--rojo);
+}
+
+.seccion.preguntas > p:last-child {
+  margin-bottom: 0;
+}
+
+/* en estas dos páginas se quita el espacio de debajo del contenido para que la flecha vaya justo al acabar */
+.seccion.preguntas,
+.galeria-grande {
+  padding-bottom: 0;
+}
+
+.subir svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;                       /* grosor de la línea: fina */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  overflow: visible;
+}
+
+.subir svg path {
+  vector-effect: non-scaling-stroke;     /* la línea mide lo mismo aunque la flecha cambie de tamaño */
+}
+
+.subir:hover svg,
+.subir:focus-visible svg {
+  stroke-width: 2;
+}
+
+.subir:focus-visible {
   outline: 2px solid var(--primario);
   outline-offset: 6px;
 }

@@ -8,21 +8,21 @@
   <meta name="description" content="Fotografía de autor de Alejandro de Lucas.">
 
   <!-- Tipo de letra de los títulos: está en la carpeta fuentes/ (no se pide a Google). El texto usa Helvetica -->
-  <link rel="preload" href="fuentes/libre-baskerville-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fuentes/libre-baskerville-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Icono de la pestaña: la firma -->
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="192x192" href="icono-192.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="../iconos/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="../iconos/icono-192.png">
+  <link rel="apple-touch-icon" href="../iconos/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="../estilos.css">
 </head>
 <body class="marco">
 
   <!-- Cabecera: firma a la izquierda (siempre lleva al inicio) y apartado en el centro -->
   <header class="marco-cabecera cabecera-interna">
-    <a class="firma" href="index.html" aria-label="Alejandro de Lucas, ir al inicio">
-      <img src="fotos/Portada/firma-oscura.png" alt="">
+    <a class="firma" href="../index.html" aria-label="Alejandro de Lucas, ir al inicio">
+      <img src="../fotos/Portada/firma-oscura.png" alt="">
     </a>
     <p class="cabecera-seccion">Fotografía de autor</p>
   </header>
@@ -42,6 +42,13 @@
 
   </main>
 
+  <!-- Flecha para volver al principio de la página: roja, fina y centrada entre el final del contenido y los datos de contacto -->
+  <a class="subir" href="#" aria-label="Volver al principio de la página">
+    <svg viewBox="0 0 24 44" aria-hidden="true" focusable="false">
+      <path d="M12 43 V2 M2 13 L12 2 L22 13" />
+    </svg>
+  </a>
+
   <!-- CONTACTO -->
   <footer class="marco-contacto">
     <a href="mailto:alejandrodelucascaldera@gmail.com">alejandrodelucascaldera@gmail.com</a>
@@ -49,7 +56,7 @@
     <a href="tel:+34722467468">+34 722 467 468</a>
   </footer>
 
-  <script src="fotos-aleatorias.js"></script>
+  <script src="../scripts/fotos-aleatorias.js"></script>
 
     <nav class="enlaces-legales" aria-label="Información legal">
       <a href="aviso-legal.html">Aviso legal</a>

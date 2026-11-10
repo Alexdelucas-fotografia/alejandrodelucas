@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CAMBIA "Tu Ciudad" -->
+  <title>Reportajes familiares · Alejandro de Lucas</title>
+  <meta name="description" content="Sesiones de fotos de familia de Alejandro de Lucas en Tu Ciudad.">
+
+  <!-- Tipo de letra de los títulos: está en la carpeta fuentes/ (no se pide a Google). El texto usa Helvetica -->
+  <link rel="preload" href="../fuentes/libre-baskerville-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Icono de la pestaña: la firma -->
+  <link rel="icon" href="../iconos/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="../iconos/icono-192.png">
+  <link rel="apple-touch-icon" href="../iconos/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="../estilos.css">
+</head>
+<body class="marco">
+
+  <!-- Cabecera: firma a la izquierda (siempre lleva al inicio) y apartado en el centro -->
+  <header class="marco-cabecera cabecera-interna">
+    <a class="firma" href="../index.html" aria-label="Alejandro de Lucas, ir al inicio">
+      <img src="../fotos/Portada/firma-oscura.png" alt="">
+    </a>
+    <p class="cabecera-seccion">Reportajes familiares</p>
+  </header>
+
+
+
+  <main>
+
+    <!-- El título "Reportajes familiares" ya está arriba, en el centro de la cabecera. Aquí queda oculto
+         (solo lo leen los buscadores y los lectores de pantalla). -->
+    <h1 class="solo-lectores">Reportajes familiares</h1>
+
+    <!-- ===== PRESENTACIÓN: texto a la izquierda y tu foto a la derecha.
+         CAMBIA el subtítulo, el texto y la foto ===== -->
+    <section class="sobre">
+      <div class="sobre-texto">
+        <h2>Alejandro de Lucas</h2>
+        <p class="sobre-subtitulo">Fotógrafo de familia, pareja y embarazo en Madrid</p>
+        <p class="sobre-parrafo">Vivo en Madrid y la fotografía siempre me ha acompañado a todas partes. Me apasiona capturar esos momentos que pasan sin avisar: una risa a destiempo, una mirada cómplice, una mano que busca otra mano.</p>
+        <p class="sobre-parrafo">He sido padre hace muy poquito, y eso ha cambiado mi forma de mirar al mundo. Estoy descubriendo lo rápido que pasa todo y lo mucho que se agradece tener un recuerdo real de cómo somos ahora. Por eso me encanta fotografiar a las familias: todas son etapas únicas que merecen guardarse con cariño.</p>
+        <p class="sobre-parrafo">Mi idea es sencilla: que estéis cómodos delante de la cámara y que las fotos sean naturales y llenas de vida. Con las fotos en blanco y negro lo que os lleváis no caducará nunca: el aspecto cambia, pero la esencia de una persona permanece y se reconoce siempre. Vuestros hijos podrán mirar estas fotos de adultos y reconocerse, y también reconocer el amor con el que crecieron. Una foto con alma es una herencia.</p>
+
+        <!-- Enlace a la página de preguntas ¿Por qué blanco y negro? -->
+        <a class="avance-enlace" href="por-que-blanco-y-negro.html">
+          <span class="avance-mas">Leer más</span>
+        </a>
+      </div>
+      <div class="sobre-foto">
+        <a class="foto-enlace" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(4).JPG" alt="Un niño sonriente con camisa de rayas tumbado sobre una manta, mirando hacia arriba, en blanco y negro"></a>
+      </div>
+    </section>
+
+    <!-- ===== APARTADOS DE LA PÁGINA: Familia, Embarazo y Recién nacido.
+         Cada apartado es una cuadrícula de filas de 3 fotos, cada una con su formato, como en la portada (class="cuadricula").
+         Las fotos cambian de sitio en cada recarga (fotos-aleatorias.js). Para tener más o menos filas, añade o quita fotos
+         en grupos de 3. Las reglas de cada apartado (tripa, recién nacido) están en la cabecera de fotos-aleatorias.js ===== -->
+    <section class="apartado" id="reportajes-familiares" data-excluye="tripa">
+      <h2 class="apartado-titulo">Familia</h2>
+
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:0.6667" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(2).JPG" alt="Un niño sonriente con camisa de rayas sostiene una manzana, en blanco y negro"></a>
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido con el ceño fruncido, apoyado sobre un brazo, en un encuadre más cerrado. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(8).jpg" alt="Recién nacido con el ceño fruncido, apoyado sobre un brazo, en un encuadre más cerrado"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(14).jpg" alt="Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre"></a>
+        </div>
+        <div class="fila">
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(19).jpg" alt="Pie de un recién nacido con calcetín blanco"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre con los ojos cerrados besa el pie de su recién nacido. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(24).jpg" alt="Una madre con los ojos cerrados besa el pie de su recién nacido"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pareja abrazada en el parque, ella apoyada en el pecho de él, que sonríe. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(2).jpg" alt="Pareja abrazada en el parque, ella apoyada en el pecho de él, que sonríe"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="apartado" id="embarazo" data-tema="tripa">
+      <h2 class="apartado-titulo">Embarazo</h2>
+
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Embarazada con las manos sobre la tripa, con la sombra de una flor. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(36).jpg" alt="Embarazada con las manos sobre la tripa, con la sombra de una flor"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Mano con anillo sobre la tripa de una embarazada, con pantalón vaquero. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(39).jpg" alt="Mano con anillo sobre la tripa de una embarazada, con pantalón vaquero"></a>
+          <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Manos de una pareja sobre la tripa de una embarazada. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%204/Sesi%C3%B3n%204%20familia%20y%20embarazo%20(8).jpg" alt="Manos de una pareja sobre la tripa de una embarazada"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="apartado" id="recien-nacido" data-tema="rn">
+      <h2 class="apartado-titulo">Recién nacido</h2>
+
+      <div class="cuadricula">
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(4).jpg" alt="Recién nacido con el ceño fruncido, apoyado sobre un brazo y mirando a cámara"></a>
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pies de un recién nacido sujetos por las manos de sus padres. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(7).jpg" alt="Pies de un recién nacido sujetos por las manos de sus padres"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en otro encuadre. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(12).jpg" alt="Detalle de la oreja y el pelo de un recién nacido con jersey de punto, en otro encuadre"></a>
+        </div>
+        <div class="fila">
+          <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido tumbado mirando hacia arriba, con una mano levantada. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(16).jpg" alt="Recién nacido tumbado mirando hacia arriba, con una mano levantada"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre besa la mejilla de su recién nacido, que mira a cámara. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(20).jpg" alt="Una madre besa la mejilla de su recién nacido, que mira a cámara"></a>
+          <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pie de un recién nacido con los deditos, junto a un calcetín blanco. Abrir el Instagram de Alejandro de Lucas"><img loading="lazy" src="../fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(23).jpg" alt="Pie de un recién nacido con los deditos, junto a un calcetín blanco"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EN QUÉ CONSISTE Y PRECIOS. CAMBIA el texto cuando quieras ===== -->
+    <section class="seccion detalle-servicio">
+      <p> El reportaje fotográfico es en el exterior o en tu hogar y tiene una duración de entre 45 y 60 minutos (aprox.) junto con la edición de todas las fotografías tanto en color, como en blanco y negro. Incluye la entrega de un mínimo de 30 fotografías en una galería online privada, para que puedas compartir el reportaje con familiares y amigos de forma fácil y segura.</p>
+
+      <p>Además, recibirás las imágenes en alta resolución, listas para imprimir y conservar para siempre. Este servicio está diseñado para capturar los momentos más especiales de tu familia, creando recuerdos que perdurarán a lo largo del tiempo.</p>
+
+      <ul class="precios">
+        <li>PRECIO DEL REPORTAJE = 150€ + IVA</li>
+        <li>PACK ESPECIAL DE EMBARAZO + BEBÉ = 250€ + IVA</li>
+        <li>DESCUENTO ANTIGUOS CLIENTES = 50€</li>
+      </ul>
+
+      <p class="nota">* El descuento de Antiguos clientes no se puede aplicar en el pack de Embarazo + Bebé, ni combinar con otros descuentos.</p>
+      <p class="nota">** En el pack de Embarazo + Bebé, la sesión con el bebé tendrá una validez de ocho meses desde el nacimiento del mismo. En caso de no realizarla dentro de ese tiempo, será necesario abonar la diferencia hasta el precio habitual de la sesión individual para poder realizarla.</p>
+    </section>
+
+    <!-- ===== BOTÓN FINAL. CAMBIA el enlace (ahora abre un correo) ===== -->
+    <section class="seccion acciones-final">
+      <a class="boton" href="mailto:alejandrodelucascaldera@gmail.com?subject=Te%20cuento%20mi%20idea">Cuéntame tu idea</a>
+    </section>
+
+
+    <section class="seccion otras-sesiones">
+      <p>Otros</p>
+      <ul>
+        <li><a href="analogicas.html">Fotos analógicas</a></li>
+        <li><a href="fotografia-de-autor.html">Fotografía de autor</a></li>
+        <li><a href="por-que-blanco-y-negro.html">¿Por qué blanco y negro?</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- CONTACTO -->
+  <footer class="marco-contacto">
+    <a href="mailto:alejandrodelucascaldera@gmail.com">alejandrodelucascaldera@gmail.com</a>
+    <a href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer">@alexlucascaldera</a>
+    <a href="tel:+34722467468">+34 722 467 468</a>
+  </footer>
+
+  <!-- CARRUSEL DE PIE: una fila de fotos cuadradas que se desliza con las flechas (o con el dedo).
+       Lleva TODAS las fotos de la lista de fotos-aleatorias.js, mezcladas en cada recarga: no hay que tocar nada aquí. -->
+  <div class="carrusel" role="region" aria-label="Más fotos">
+    <div class="carrusel-pista"></div>
+    <button class="carrusel-flecha carrusel-anterior" type="button" aria-label="Fotos anteriores">&#8249;</button>
+    <button class="carrusel-flecha carrusel-siguiente" type="button" aria-label="Fotos siguientes">&#8250;</button>
+  </div>
+
+  <nav class="enlaces-legales" aria-label="Información legal">
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Política de privacidad</a>
+    <a href="cookies.html">Política de cookies</a>
+  </nav>
+
+  <script src="../scripts/fotos-aleatorias.js"></script>
+
+  <script src="../scripts/script.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d1ac068f640341fbb463d0f2d5d0233c"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -46,7 +46,7 @@
     clearTimeout(plazoCarga);
     intro.classList.add('foto-lista');            // 1. aparece la foto
     despues(function () { intro.classList.add('firma-lista'); }, 900);   // 2. aparece la firma
-    despues(salir, 4200);                         // 3. se va el fondo, la firma pasa a blanca y se descubre la portada
+    despues(salir, 4200);                         // 3. se va el fondo, la firma pasa de negra a blanca y se descubre la portada
   });
   intro.addEventListener('click', terminar);
   document.addEventListener('keydown', terminar);
@@ -105,4 +105,49 @@ document.querySelectorAll('.carrusel').forEach(function (carrusel) {
   pista.addEventListener('scroll', actualizar, { passive: true });
   window.addEventListener('resize', actualizar);
   actualizar();
+});
+
+// =========================================================
+// CUADRÍCULAS: FOTOS DE DOS EN DOS EN EL MÓVIL
+// En el ordenador cada fila lleva 3 fotos; en el móvil (pantalla estrecha) las páginas de dentro las agrupan de dos en dos,
+// cada foto con su formato. Si queda una sola foto suelta, ocupa toda la fila. La portada no entra: allí van de una en una (CSS).
+// =========================================================
+(function () {
+  var cuadriculas = Array.prototype.filter.call(document.querySelectorAll('.cuadricula'), function (c) { return !c.closest('.zara'); });
+  if (!cuadriculas.length) return;
+  var movil = window.matchMedia('(max-width: 45rem)');
+  var porFila = 3;
+
+  function agrupar(n) {
+    cuadriculas.forEach(function (cuadricula) {
+      var enlaces = Array.prototype.slice.call(cuadricula.querySelectorAll('.foto-enlace'));
+      Array.prototype.forEach.call(cuadricula.querySelectorAll('.fila'), function (fila) { cuadricula.removeChild(fila); });
+      for (var i = 0; i < enlaces.length; i += n) {
+        var fila = document.createElement('div');
+        fila.className = 'fila';
+        enlaces.slice(i, i + n).forEach(function (e) { fila.appendChild(e); });
+        cuadricula.appendChild(fila);
+      }
+    });
+    porFila = n;
+  }
+
+  function actualizar() {
+    var n = movil.matches ? 2 : 3;
+    if (n !== porFila) agrupar(n);
+  }
+
+  actualizar();
+  if (movil.addEventListener) movil.addEventListener('change', actualizar); else movil.addListener(actualizar);
+})();
+
+// =========================================================
+// FLECHA PARA VOLVER AL PRINCIPIO
+// Sube suavemente hasta arriba (sin movimiento si el visitante tiene esa opción activada).
+// =========================================================
+document.querySelectorAll('.subir').forEach(function (flecha) {
+  flecha.addEventListener('click', function (evento) {
+    evento.preventDefault();
+    window.scrollTo({ top: 0, behavior: sinMovimiento ? 'auto' : 'smooth' });
+  });
 });

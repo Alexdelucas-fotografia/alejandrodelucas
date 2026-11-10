@@ -30,6 +30,8 @@
 //   <img src="fotos/web/mi-retrato.jpg" alt="..." data-fija>
 // =========================================================
 (function () {
+  // la raíz de la web: la carpeta de arriba de scripts/. Así las fotos se encuentran igual desde index.html que desde páginas/
+  var raiz = document.currentScript ? new URL('../', document.currentScript.src).href : '';
   var carpeta = 'fotos/web/Familia/';
   var carpetaCarrusel = 'fotos/carrusel/';   // copias ligeras (1200 px) de todas las fotos, solo para el carrusel
 
@@ -144,7 +146,7 @@
       enlace.rel = 'noopener noreferrer';
       enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
       var foto = document.createElement('img');
-      foto.src = encodeURI(carpeta + f.f);
+      foto.src = raiz + encodeURI(carpeta + f.f);
       foto.alt = f.alt;
       if (i > 0) foto.loading = 'lazy';   // la primera se carga ya; las demás, al irse acercando
       enlace.appendChild(foto);
@@ -169,7 +171,7 @@
       enlace.setAttribute('aria-label', f.alt + '. Abrir el Instagram de Alejandro de Lucas');
       enlace.style.setProperty('--r', String(f.r));   // el carrusel también respeta el formato de cada foto
       var foto = document.createElement('img');
-      foto.src = encodeURI(carpetaCarrusel + f.f.split('/').pop());   // copia ligera, mismo nombre de archivo
+      foto.src = raiz + encodeURI(carpetaCarrusel + f.f.split('/').pop());   // copia ligera, mismo nombre de archivo
       foto.alt = f.alt;
       foto.loading = 'lazy';
       enlace.appendChild(foto);
@@ -246,7 +248,7 @@
 
   orden.forEach(function (img) {
     var f = elegir(img);
-    img.src = encodeURI(carpeta + f.f);   // encodeURI: los espacios y las tildes del nombre no dan problemas
+    img.src = raiz + encodeURI(carpeta + f.f);   // encodeURI: los espacios y las tildes del nombre no dan problemas
     img.alt = f.alt;
     var enlace = img.closest('a');
     if (enlace) {

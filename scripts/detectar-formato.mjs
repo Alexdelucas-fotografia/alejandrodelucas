@@ -14,8 +14,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const RAIZ = path.dirname(fileURLToPath(import.meta.url));
-const LISTA = path.join(RAIZ, 'fotos-aleatorias.js');
+const AQUI = path.dirname(fileURLToPath(import.meta.url));   // la carpeta scripts/
+const RAIZ = path.resolve(AQUI, '..');                      // la raíz del proyecto
+const LISTA = path.join(AQUI, 'fotos-aleatorias.js');
 const CARRUSEL = path.join(RAIZ, 'fotos', 'carrusel');
 
 const FORMATOS = [1.5, 1.25, 1, 0.8, 0.6667];   // 3:2, 5:4, 1:1, 4:5, 2:3
