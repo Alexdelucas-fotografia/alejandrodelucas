@@ -492,6 +492,18 @@ h2 {
   color: var(--texto-suave);
 }
 
+/* En el móvil la portada se ve de una en una: cada foto a todo el ancho, una debajo de otra, con su formato */
+@media (max-width: 45rem) {
+  .zara .cuadricula .fila {
+    flex-direction: column;
+  }
+
+  .zara .cuadricula .fila > .foto-enlace {
+    flex: none;
+    width: 100%;
+  }
+}
+
 .cuadricula img {
   display: block;
   width: 100%;
@@ -550,6 +562,10 @@ h2 {
 
 .intro-firma {
   position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);     /* mismos márgenes que la firma de la portada: esquina inferior derecha */
+  bottom: clamp(1rem, 3vw, 2rem);
+  width: calc(var(--alto) * 0.76);      /* mismo tamaño que la de la portada (proporción 638 x 839) */
+  height: var(--alto);
   z-index: 1001;
   opacity: 0;
   transform-origin: 0 0;

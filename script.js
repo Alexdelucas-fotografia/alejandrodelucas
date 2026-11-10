@@ -1,7 +1,7 @@
 // =========================================================
 // INTRO DE LA PORTADA
 // La primera vez que se abre la portada: foto entera y la firma negra fuera de la foto, en la esquina inferior
-// derecha; luego se va el fondo y la firma se queda ahí, en blanco, sobre la portada. Pulsar o tocar cualquier tecla la salta.
+// derecha (colocada con CSS, igual que la de la portada); luego se va el fondo y la firma se queda ahí, en blanco, sobre la portada. Pulsar o tocar cualquier tecla la salta.
 // El <head> de index.html decide si toca (clase con-intro) y los estilos están en estilos.css.
 // =========================================================
 (function () {
@@ -26,17 +26,6 @@
     window.scrollTo(0, 0);
   }
 
-  // la firma sale negra exactamente donde está la de la portada (esquina inferior derecha), fuera de la foto
-  function colocarFirma() {
-    var destino = document.querySelector('.firma-grande img');
-    if (!destino) return;
-    var d = destino.getBoundingClientRect();
-    firma.style.width = d.width + 'px';
-    firma.style.height = d.height + 'px';
-    firma.style.left = d.left + 'px';
-    firma.style.top = d.top + 'px';
-  }
-
   // se va el fondo y la firma pasa de negra a blanca. Primero se desbloquea la página (aparece la barra de scroll y la firma
   // de la portada ocupa su sitio definitivo, tapada aún por el fondo) y la firma de la intro se coloca justo encima.
   function salir() {
@@ -55,12 +44,10 @@
   foto.addEventListener('error', terminar);
   foto.addEventListener('load', function () {
     clearTimeout(plazoCarga);
-    colocarFirma();
     intro.classList.add('foto-lista');            // 1. aparece la foto
     despues(function () { intro.classList.add('firma-lista'); }, 900);   // 2. aparece la firma
     despues(salir, 4200);                         // 3. se va el fondo, la firma pasa a blanca y se descubre la portada
   });
-  window.addEventListener('resize', function () { if (!intro.classList.contains('saliendo')) colocarFirma(); });
   intro.addEventListener('click', terminar);
   document.addEventListener('keydown', terminar);
 
