@@ -45,7 +45,6 @@
     { f: 'Sesión 3/Sesión 3 Familia y RN (9).jpg', r: 1.25, rn: true, alt: 'Manos de una madre con anillo sobre la manita de un recién nacido' },
     { f: 'Sesión 3/Sesión 3 Familia y RN (11).jpg', r: 0.8, rn: true, alt: 'Detalle de la oreja y el pelo de un recién nacido con jersey de punto' },
     { f: 'Sesión 3/Sesión 3 Familia y RN (13).jpg', r: 0.8, rn: true, alt: 'Perfil de la nariz y la mejilla de un recién nacido' },
-    { f: 'Sesión 3/Sesión 3 Familia y RN (14).jpg', r: 1.5, rn: true, alt: 'Manita de un recién nacido con jersey de punto, sobre un dedo, en otro encuadre' },
     { f: 'Sesión 3/Sesión 3 Familia y RN (15).jpg', r: 0.8, rn: true, alt: 'Manita de un recién nacido agarrada a un dedo, con su cara desenfocada al fondo' },
     { f: 'Sesión 3/Sesión 3 Familia y RN (16).jpg', r: 1.25, rn: true, alt: 'Recién nacido tumbado mirando hacia arriba, con una mano levantada' },
     { f: 'Sesión 3/Sesión 3 Familia y RN (17).jpg', r: 1.5, rn: true, alt: 'Recién nacido que mira hacia un lado mientras agarra el dedo de su madre' },
