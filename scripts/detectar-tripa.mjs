@@ -1,11 +1,11 @@
 // Detecta solas las fotos donde se ve la tripa de la embarazada y pone (o quita) tripa: true en fotos-aleatorias.js.
 //
-// Como usarlo: no hace falta hacer nada. Se ejecuta solo al final de crear-copias-ligeras.bat
+// Como usarlo: no hace falta hacer nada. Se ejecuta solo al final de actualizar-fotos.bat
 // (o a mano: node detectar-tripa.mjs).
 //
 // Que hace:
 //   1. Mira solo las fotos que llevan "embarazo" en el nombre del archivo (las de la sesion de embarazo).
-//   2. De cada una, mira la imagen (copia ligera de fotos/carrusel/) con un modelo de reconocimiento de imagenes
+//   2. De cada una, mira la imagen (el original de fotos/web/Familia/) con un modelo de reconocimiento de imagenes
 //      (CLIP) que funciona EN TU ORDENADOR: las fotos no se envian a ningun sitio.
 //   3. Si en la foto se ve la tripa, le pone tripa: true en la lista de fotos-aleatorias.js; si no, se lo quita.
 //      Ya no hay que marcarlo a mano. La norma esta explicada en la cabecera de fotos-aleatorias.js.
@@ -26,7 +26,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const AQUI = path.dirname(fileURLToPath(import.meta.url));   // la carpeta scripts/
 const RAIZ = path.resolve(AQUI, '..');                      // la raíz del proyecto
 const LISTA = path.join(AQUI, 'fotos-aleatorias.js');
-const CARRUSEL = path.join(RAIZ, 'fotos', 'carrusel');
+const FOTOS = path.join(RAIZ, 'fotos', 'web', 'Familia');
 const CACHE = path.join(AQUI, 'tripa-detectado.json');
 const HERRAMIENTAS = path.join(process.env.LOCALAPPDATA || os.homedir(), 'mi-web-tripa');
 
@@ -53,16 +53,16 @@ const lineas = texto.split('\n');
 const entradas = [];   // { i: numero de linea, nombre: archivo }
 lineas.forEach((l, i) => {
   const m = l.match(/^\s*\{ f: '([^']+)'/);
-  if (m) entradas.push({ i, nombre: m[1].split('/').pop() });
+  if (m) entradas.push({ i, nombre: m[1].split('/').pop(), ruta: path.join(FOTOS, ...m[1].split('/')) });
 });
 const candidatas = entradas.filter(e => plano(e.nombre).includes('embarazo'));
 
 let cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
 if (cache._metodo !== METODO) cache = { _metodo: METODO };   // otro método: se vuelven a analizar todas las fotos
-const pendientes = candidatas.filter(e => !(e.nombre in cache) && fs.existsSync(path.join(CARRUSEL, e.nombre)));
+const pendientes = candidatas.filter(e => !(e.nombre in cache) && fs.existsSync(e.ruta));
 for (const e of candidatas) {
-  if (!(e.nombre in cache) && !fs.existsSync(path.join(CARRUSEL, e.nombre))) {
-    console.log(`AVISO: '${e.nombre}' no tiene copia ligera en fotos/carrusel: ejecuta crear-copias-ligeras.bat.`);
+  if (!(e.nombre in cache) && !fs.existsSync(e.ruta)) {
+    console.log(`AVISO: no encuentro la foto '${e.nombre}' en fotos/web/Familia.`);
   }
 }
 
@@ -87,7 +87,7 @@ if (pendientes.length) {
   console.log('Cargando el modelo (la primera vez se descarga, unos 300 MB)...');
   const clasificar = await pipeline('zero-shot-image-classification', 'Xenova/clip-vit-base-patch32', { dtype: 'fp16' });
   for (const e of pendientes) {
-    const r = await clasificar(path.join(CARRUSEL, e.nombre), ETIQUETAS);
+    const r = await clasificar(e.ruta, ETIQUETAS);
     cache[e.nombre] = Math.round(r.find(x => x.label === ETIQUETAS[0]).score * 1000) / 1000;
     console.log(`  ${cache[e.nombre] >= UMBRAL ? 'SE VE LA TRIPA' : 'no se ve      '} (${cache[e.nombre]})  ${e.nombre}`);
   }

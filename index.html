@@ -21,8 +21,8 @@
   <script>
     // INTRO: la primera vez que se abre la portada en una visita se ve una foto a pantalla completa con la firma.
     // No sale si el visitante ya la vio en esta visita ni si tiene activada la opción de menos movimiento.
-    // Para cambiar la foto, cambia esta ruta (usa su copia ligera de fotos/carrusel/).
-    window.introFoto = 'fotos/carrusel/Sesi\u00f3n 3 Familia y RN autor (22).jpg';
+    // Para cambiar la foto, cambia esta ruta (la ruta de la foto, dentro de fotos/web/Familia/).
+    window.introFoto = 'fotos/web/Familia/Sesi\u00f3n 3/Sesi\u00f3n 3 Familia y RN autor (22).jpg';
     try {
       var forzar = /[?&]intro(=|&|$)/.test(location.search);   // abrir la portada con ?intro (por ejemplo http://localhost:8080/?intro) fuerza que salga la intro
       if ((forzar || !sessionStorage.getItem('intro-vista')) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -60,8 +60,8 @@
 
     <div class="cuadricula">
       <div class="fila">
-        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%201/Familia%20sesi%C3%B3n%201%20(1).JPG" alt="Bebé gateando sobre una alfombra de pelo mientras recibe un beso, en blanco y negro"></a>
-        <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Bebé dormida con un lazo blanco, arropada en blanco y negro. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%202/Familia%20sesi%C3%B3n%202%20(1).JPG" alt="Bebé dormida con un lazo blanco, arropada en blanco y negro"></a>
+        <a class="foto-enlace" style="--r:1.25" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Pies de un recién nacido sujetos por las manos de sus padres. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(7).jpg" alt="Pies de un recién nacido sujetos por las manos de sus padres"></a>
+        <a class="foto-enlace" style="--r:0.8" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Una madre besa a su recién nacido, con la manita del bebé en primer plano. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(18).jpg" alt="Una madre besa a su recién nacido, con la manita del bebé en primer plano"></a>
         <a class="foto-enlace" style="--r:1.5" href="https://www.instagram.com/alexlucascaldera" target="_blank" rel="noopener noreferrer" aria-label="Recién nacido dormido, con la mano de su madre sobre su pecho. Abrir el Instagram de Alejandro de Lucas"><img src="fotos/web/Familia/Sesi%C3%B3n%203/Sesi%C3%B3n%203%20Familia%20y%20RN%20(2).jpg" alt="Recién nacido dormido, con la mano de su madre sobre su pecho"></a>
       </div>
       <div class="fila">
