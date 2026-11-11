@@ -62,6 +62,9 @@ body {
 img {
   display: block;
   max-width: 100%;
+  -webkit-user-drag: none;               /* no se pueden arrastrar fuera de la página */
+  -webkit-touch-callout: none;           /* sin menú de pulsación larga en iPhone */
+  user-select: none;
 }
 
 a {
@@ -796,7 +799,7 @@ h2 {
 /* Medidas de la portada. El pie es el mismo que el de las páginas de dentro (.marco-contacto). */
 .zara {
   --lado: clamp(3rem, 9vw, 7.5rem);                 /* igual que en las páginas de dentro */
-  --alto: clamp(5.5rem, min(28vw, 50vh), 24rem);        /* alto de la firma: nunca más del 50 % del alto de la ventana */
+  --alto: clamp(3.5rem, min(17vw, 30vh), 14rem);        /* alto de la firma (portada e intro): nunca más del 30 % del alto de la ventana */
 }
 
 /* Varios párrafos seguidos en la presentación */
@@ -873,13 +876,12 @@ h2 {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* el punto rojo que va delante de cada entrada del menú */
+/* la raya roja que va delante de cada entrada del menú */
 .bloque-mitad::before {
   content: "";
   flex: none;
-  width: 0.3rem;                         /* tamaño del punto: pequeño y fino */
-  height: 0.3rem;
-  border-radius: 50%;
+  width: 1.1rem;                         /* largo de la raya */
+  height: 1px;                           /* fina */
   background: var(--rojo);
 }
 

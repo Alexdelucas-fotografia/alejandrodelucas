@@ -151,3 +151,16 @@ document.querySelectorAll('.subir').forEach(function (flecha) {
     window.scrollTo({ top: 0, behavior: sinMovimiento ? 'auto' : 'smooth' });
   });
 });
+
+// =========================================================
+// FOTOS PROTEGIDAS
+// Con el botón derecho (o pulsación larga en el móvil) sobre una foto no sale el menú de "Abrir imagen en una pestaña nueva",
+// "Guardar imagen como..." ni "Copiar imagen", y tampoco se pueden arrastrar fuera de la página.
+// Ojo: esto solo frena el uso normal. Quien sepa abrir las herramientas del navegador sigue pudiendo sacar la foto.
+// =========================================================
+document.addEventListener('contextmenu', function (evento) {
+  if (evento.target.closest && evento.target.closest('img, picture, .foto-enlace, .foto-autor, #intro')) evento.preventDefault();
+});
+document.addEventListener('dragstart', function (evento) {
+  if (evento.target.tagName === 'IMG') evento.preventDefault();
+});
