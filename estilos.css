@@ -1011,6 +1011,15 @@ h2 {
   color: var(--rojo);
 }
 
+/* ¿Por qué blanco y negro?: la frase destacada va cerca del título de la página (sin el hueco grande de arriba) */
+.seccion.preguntas {
+  padding-top: 1rem;
+}
+
+.seccion.preguntas > .cita {
+  margin-top: 2rem;
+}
+
 .seccion.preguntas > p:last-child {
   margin-bottom: 0;
 }
