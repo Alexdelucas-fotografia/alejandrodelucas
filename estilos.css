@@ -583,8 +583,8 @@ h2 {
   position: fixed;
   right: clamp(1rem, 3vw, 2.5rem);     /* mismos márgenes que la firma de la portada: esquina inferior derecha */
   bottom: clamp(1rem, 3vw, 2rem);
-  width: calc(var(--alto) * 0.76);      /* mismo tamaño que la de la portada (proporción 638 x 839) */
-  height: var(--alto);
+  width: calc(var(--alto) * 0.76 * 0.65);      /* más pequeña que la de la portada (proporción 638 x 839); al irse el fondo crece hasta la de la portada */
+  height: calc(var(--alto) * 0.65);
   z-index: 1001;
   opacity: 0;
   transform-origin: 0 0;
