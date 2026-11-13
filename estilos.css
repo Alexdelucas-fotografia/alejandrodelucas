@@ -887,7 +887,9 @@ h2 {
   background: var(--fondo-bloque);
   color: var(--texto);
   font-family: var(--letra-titulos);
-  font-size: clamp(0.95rem, 1.6vw, 1.2rem);   /* letra pequeña */
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);   /* letra pequeña */
+  font-weight: 400;                      /* el grosor más fino que tiene esta tipografía */
+  letter-spacing: 0.03em;
   line-height: 1.3;
   text-align: left;
   text-decoration: none;
