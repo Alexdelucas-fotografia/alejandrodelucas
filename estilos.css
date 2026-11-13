@@ -350,6 +350,12 @@ h2 {
 @media (max-width: 45rem) {
   .cabecera-interna {
     gap: 0.5rem;
+    height: calc(var(--lado) * 1.5);   /* cabecera más alta para que quepa la firma más grande */
+  }
+
+  .firma img {
+    height: calc(var(--lado) * 1.3);
+    max-width: 100%;
   }
 
   .cabecera-seccion {
@@ -800,6 +806,18 @@ h2 {
 .zara {
   --lado: clamp(3rem, 9vw, 7.5rem);                 /* igual que en las páginas de dentro */
   --alto: clamp(3.5rem, min(17vw, 30vh), 14rem);        /* alto de la firma (portada e intro): nunca más del 30 % del alto de la ventana */
+}
+
+/* Solo en móvil: la firma de la portada y de la intro más grande */
+@media (max-width: 45rem) {
+  .zara {
+    --alto: clamp(6rem, min(30vw, 26vh), 10rem);
+  }
+
+  .intro-firma {
+    width: calc(var(--alto) * 0.76 * 0.85);
+    height: calc(var(--alto) * 0.85);
+  }
 }
 
 /* Varios párrafos seguidos en la presentación */
